@@ -235,6 +235,14 @@ export class LiberacionComponent {
               .get_user_job(item, this.dateSearch)
               .subscribe({
                 next: (response: any) => {
+                          // ✅ AGREGAR ESTOS CONSOLE.LOG TEMPORALES:
+                    console.log('=== RESPUESTA COMPLETA DE get_user_job ===');
+                    console.log(response);
+                    console.log('=== PRIMER ELEMENTO DEL ARRAY ===');
+                    console.log(response[0]);
+                    console.log('=== TODAS LAS PROPIEDADES ===');
+                    console.log(Object.keys(response[0]));
+        // ✅ FIN CONSOLE.LOG
                     this.isProcessing = false;
                   response.forEach((users: any) => {
                     // Actualiza el objeto y reasigna el array para que Angular lo detecte
@@ -272,6 +280,10 @@ export class LiberacionComponent {
     });
 
     this.getChangeServices.get_arg_entornos('libera').subscribe((entornosValidos) => {
+        // ✅ AGREGAR ESTE CONSOLE.LOG:
+        console.log('=== ENTORNOS VÁLIDOS ===');
+        console.log(entornosValidos);
+        // ✅ FIN CONSOLE.LOG
       this.isProcessing = false;
       this.entornos = entornosValidos.map((e: any) => e.entorno?.trim());
     });

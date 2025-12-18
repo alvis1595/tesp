@@ -147,6 +147,18 @@ export class ModalComponent {
       .pipe(exhaustMap(() => this.getChangeServices.check_estado(rep)))
       .subscribe({
         next: (response: any) => {
+
+                  // ✅ AGREGAR ESTOS CONSOLE.LOG TEMPORALES:
+        console.log('=== RESPUESTA DE check_estado ===');
+        console.log(response);
+        if (response && response.length > 0) {
+          console.log('=== PRIMER ELEMENTO ===');
+          console.log(response[0]);
+          console.log('=== PROPIEDADES DISPONIBLES ===');
+          console.log(Object.keys(response[0]));
+        }
+        // ✅ FIN CONSOLE.LOG
+
           this.deployStatus = response;
           this.listFilterJob = this.getJobListStatus();
           this.agruparStatus();
