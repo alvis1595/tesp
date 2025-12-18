@@ -1,0 +1,37 @@
+
+@if (type == 'edit'){
+  <button nz-button nzType="primary" nzSize="small" (click)="showModal()">
+    <nz-icon nzType="edit"  nzTheme="fill"/>
+  </button>
+}@else if(type === 'create'){
+  <button nz-button [nzType]="'primary'" nzSize="large" (click)="showModal()">
+    <nz-icon nzType="form" /> Agregar
+  </button>
+}
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="title"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()">
+  <ng-container *nzModalContent>
+
+  <form  nz-form [formGroup]="formEdit" nzLayout="vertical" class="form-container">
+    @for (key of formKeys; track $index) {
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>{{key | titlecase }}</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
+          <input nz-input [formControlName]="key" placeholder=""  />
+          <ng-template #userErrorTpl let-control>
+            @if (control.errors?.['required']) {
+              Por favor ingresa el {{key}}
+            }
+            @if (control.errors?.['duplicated']) {
+               La key esta duplicada
+            }
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+     }
+  </form>
+  </ng-container>
+</nz-modal>

@@ -1,0 +1,197 @@
+<div class="container">
+  <h3>Pase Express</h3>
+
+  <div class="divider">
+    <div class="label">
+      <nz-radio-group [(ngModel)]="modeSelect" (ngModelChange)="reset()">
+        <label nz-radio nzValue="REP">REP</label>
+        <label nz-radio nzValue="Fecha">Fecha</label>
+      </nz-radio-group>
+    </div>
+    <div class="input-button-group">
+      @if (modeSelect=="Fecha") {
+      <nz-date-picker [(ngModel)]="elementSearch" nzFormat="dd-MMM-yyy" (ngModelChange)="validateButton()"></nz-date-picker>
+      } @else {
+      <input
+        nz-input
+        class="input-date"
+        (ngModelChange)="validateButton()"
+        placeholder="Ingrese el componente o REP"
+        [(ngModel)]="elementSearch"
+        type="text"
+      />
+      }
+      <button nz-button nzType="primary" [disabled]="btnStatus" (click)="onChange()">
+        <nz-icon nzType="search" />
+        Buscar
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="table-container">
+    <app-table
+      [columns]="columns"
+      [data]="data"
+      [loading]="muestraLoading"
+      [childColumns]="childColumns"
+      [hasExpandColumn]="hasExpandColumn"
+      [mTitle]="index.REP"
+      (indexModal)="setIndexModal($event)"
+      iconBtn="edit"
+    >
+      @if (index){
+      <div class="container-modal">
+        <h2>Justificacion de negocio:</h2>
+        <p>{{ index.children[0].JustificacionDelNegocio }}</p>
+
+        <div *ngIf="CRQElements.length || jfrogElements.length">
+          <h2>Elementos:</h2>
+
+          <h4>Elements en CRQ Arifacts:</h4>
+          <ul>
+            <li *ngFor="let element of CRQElements">{{ element }}</li>
+          </ul>
+          <h4>Elementos en JFROG:</h4>
+          <ul>
+            <li *ngFor="let element of jfrogElements">{{ element }}</li>
+          </ul>
+        </div>
+
+        @if (index.children[0].enlaceJfrog) {
+        <a [href]="getUrl(index.children[0].enlaceJfrog)">
+          Enlace JFROG
+        </a>
+        }
+
+        <div class="container-footer">
+          <button
+            nz-button
+            nzType="default"
+            nzType="primary"
+            (click)="showModal('upFile')"
+          >
+            Agregar Archivos
+          </button>
+          <button
+            nz-button
+            nzType="default"
+            nzType="primary"
+            nzDanger
+            (click)="showModal('listFiles')"
+          >
+            Eliminar Archivos
+          </button>
+        </div>
+      </div>
+      }
+    </app-table>
+  </div>
+</div>
+
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="modalTitle"
+  [nzContent]="modalContent"
+  [nzFooter]="modalFooter"
+  (nzOnCancel)="handleCancel()"
+>
+  <ng-template #modalTitle>
+    <h2>{{ index.Cambio | crqs }}</h2>
+  </ng-template>
+
+  <ng-template #modalContent>
+    @if(type == "upFile"){
+    <div class="upfile">
+      <label for="product">Producto</label>
+      <nz-select
+        id="product"
+        [(ngModel)]="product"
+        (ngModelChange)="postCapa()"
+        nzShowSearch
+        nzAllowClear
+        nzPlaceHolder="Seleccione un producto"
+      >
+        @for (item of appList; track item.id) {
+        <nz-option
+          [nzValue]="item.ape_id"
+          [nzLabel]="item.aplicacion"
+        ></nz-option>
+        }
+      </nz-select>
+
+      <label for="capa">Capa</label>
+      <nz-select
+        id="product"
+        [(ngModel)]="capa"
+        nzShowSearch
+        nzAllowClear
+        nzPlaceHolder="Seleccione un producto"
+        [nzDisabled]="statusCapa"
+      >
+        @for (item of capaList; track item.nombre) {
+        <nz-option
+          [nzValue]="item.descripcion"
+          [nzLabel]="item.nombre"
+        ></nz-option>
+        }
+      </nz-select>
+
+      <nz-upload [(nzFileList)]="fileList" [nzBeforeUpload]="beforeUpload">
+        <button nz-button (click)="handleUpload()" class="upload">
+          <nz-icon nzType="upload" />
+          Subir archivos
+        </button>
+      </nz-upload>
+    </div>
+    } @else {
+    <h3>Listado de archivos</h3>
+
+    <label
+      nz-checkbox
+      [(ngModel)]="allChecked"
+      (ngModelChange)="updateAllChecked()"
+      [nzIndeterminate]="
+        value.length > 0 && value.length !== FilesDelete.length
+      "
+    >
+      Seleccionar todos
+    </label>
+
+    <div class="container_delet">
+      <nz-checkbox-group
+        [nzOptions]="FilesDelete"
+        [(ngModel)]="value"
+        class="vertical-checkbox-group"
+        style="display: inline-block"
+        (ngModelChange)="updateSingleChecked()"
+      ></nz-checkbox-group>
+    </div>
+
+    <h3>Archivos a eliminar</h3>
+    <div class="contariner_delet_files">
+      <ul>
+        <li *ngFor="let item of value">{{ item | listaCambios }}</li>
+      </ul>
+    </div>
+
+    }
+  </ng-template>
+
+  <ng-template #modalFooter>
+    <div class="container-footer">
+      @if(type == "upFile"){
+      <button nz-button nzBlock nzType="primary" (click)="upload()">
+        <nz-icon nzType="form" />
+        Ejecutar carga
+      </button>
+      } @else {
+      <button nz-button nzBlock nzType="primary" (click)="deletFiles()">
+        <nz-icon nzType="form" />
+        Eliminar Archivos
+      </button>
+      }
+    </div>
+  </ng-template>
+</nz-modal>

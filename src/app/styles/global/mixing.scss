@@ -1,0 +1,6 @@
+// src/styles/global/mixing.scss
+@mixin card($width, $height, $color) {
+  background-color: $color;
+  min-width: $width;
+  min-height: $height;
+}

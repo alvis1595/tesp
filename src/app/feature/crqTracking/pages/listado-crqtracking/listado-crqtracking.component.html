@@ -1,0 +1,45 @@
+<div class="container">
+  <h3>CRQ tracking</h3>
+
+  <div class="divider">
+    <div class="label">
+      <nz-radio-group [(ngModel)]="modeSelect" (ngModelChange)="reset()">
+        <label nz-radio nzValue="REP">REP</label>
+        <label nz-radio nzValue="Componente">Componente</label>
+        <label nz-radio nzValue="Fecha">Fecha</label>
+      </nz-radio-group>
+    </div>
+
+    <div class="input-button-group">
+      @if (modeSelect=="Fecha") {
+      <nz-date-picker [(ngModel)]="elementSearch" (ngModelChange)="validateButton()"></nz-date-picker>
+      } @else {
+      <input
+        nz-input
+        (ngModelChange)="validateButton()"
+        placeholder="Ingrese el componente o REP"
+        [(ngModel)]="elementSearch"
+        type="text"
+      />
+      }
+      <button nz-button nzType="primary" [disabled]="btnStatus"  (click)="onChange()">
+        <nz-icon nzType="search" />
+        Buscar
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="table-container">
+    <app-table
+      [columns]="columns"
+      [data]="data"
+      [loading]="muestraLoading"
+      [childColumns]="childColumns"
+      [hasExpandColumn]="hasExpandColumn"
+      mTitle="Justificación del negocio"
+    >
+    </app-table>
+  </div>
+</div>

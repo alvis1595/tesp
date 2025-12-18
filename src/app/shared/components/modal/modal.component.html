@@ -1,0 +1,19 @@
+<button nz-button nzType="primary" (click)="showModal()">
+  <span> {{ButonTitle}}</span>
+</button>
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="modalTitle"
+  [nzContent]="modalContent"
+  [nzFooter]="modalFooter"
+  (nzOnCancel)="handleCancel()"
+>
+  <ng-template #modalTitle>{{Title}}</ng-template>
+
+  <ng-template #modalContent>
+    <ng-content ></ng-content>
+  </ng-template>
+
+  <ng-template #modalFooter>
+  </ng-template>
+</nz-modal>

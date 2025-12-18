@@ -1,0 +1,32 @@
+<div class="container">
+  <h3>Filtro de Reporte</h3>
+
+  <div class="divider">
+    <input
+      nz-input
+      placeholder="Filtro"
+      [(ngModel)]="filterValue"
+      (ngModelChange)="onFilterChange($event)"
+      type="text"
+    />
+
+    <button nz-button nzType="primary" (click)="downloadExcel(data_filter)">Exportar a Excel</button>
+  </div>
+</div>
+
+<div class="container">
+  <div class="table-container">
+    <app-table
+      [columns]="columns"
+      [data]="data_filter"
+      [loading]="muestraLoading"
+      [childColumns]="childColumns"
+      [hasExpandColumn]="false"
+      mTitle=""
+    >
+      <tr *ngFor="let row of data">
+        <td *ngFor="let col of columns">{{ row[col.key] }}</td>
+      </tr>
+    </app-table>
+  </div>
+</div>

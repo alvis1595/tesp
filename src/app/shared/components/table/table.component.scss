@@ -1,0 +1,37 @@
+.green-cell {
+  background-color: rgb(77, 217, 77);
+}
+
+.search-box {
+  padding: 8px;
+}
+
+.search-box input {
+  width: 188px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.search-box button {
+  width: 90px;
+}
+
+.search-button {
+  margin-right: 8px;
+}
+
+.fixed-row {
+  max-height: 10px;
+}
+
+
+nz-date-picker{
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.space {
+  app-modal-form {
+    margin-right: 12px;
+  }
+}

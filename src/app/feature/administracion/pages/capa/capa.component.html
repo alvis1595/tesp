@@ -1,0 +1,30 @@
+
+<div class="container">
+  <h3>Filtro de Capa</h3>
+
+  <div class="divider">
+     <input nz-input placeholder="Valor a filtrar" (ngModelChange)="onFilterChange($event)" [(ngModel)]="filter" type="text" />
+
+      <app-modal-form
+      [form]="FormBase"
+      title="Crear Capa"
+      type="create"
+      [editForm]="createForm"/>
+  </div>
+</div>
+
+<div class="container">
+  <app-table
+    [columns]="columns"
+    [data]="filteredData"
+    [loading]="muestraLoading"
+    [childColumns]="childColumns"
+    [hasEditColumn]='true'
+    [FormEdit]="editForm"
+    [deleteForm]="deleteForm"
+    mTitle="Justificación del negocio"
+    >
+  </app-table>
+</div>
+
+

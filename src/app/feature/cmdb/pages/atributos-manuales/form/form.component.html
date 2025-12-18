@@ -1,0 +1,365 @@
+@if (type == 'editar') {
+<button nz-button nzType="primary" (click)="showModal()">
+  <nz-icon nzType="edit" nzTheme="fill" />
+</button>
+}@else {
+<button nz-button [nzType]="'primary'" (click)="showModal()">
+  <span>{{ type }} Servidor</span>
+</button>
+}
+
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="title"
+  nzWidth="1000px"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="editOrSubmit()"
+>
+  <ng-container *nzModalContent>
+    <form
+      action=""
+      class="form"
+      [formGroup]="formGroup"
+      (ngSubmit)="onSubmit()"
+    >
+      <div class="form_field">
+        <label for="servidor">Servidor</label>
+        <input
+          id="servidor"
+          nz-input
+          placeholder="Servidor"
+          formControlName="servidor"
+          type="text"
+        />
+        @if (formGroup.get('servidor')?.touched &&
+        formGroup.get('servidor')?.errors?.['required']) {
+        <p>El servidor es necesario</p>
+        }
+      </div>
+
+      <div class="form_field">
+        <label for="direccion-ip">Dirección IP</label>
+        <input
+          id="direccion-ip"
+          nz-input
+          formControlName="ip"
+          placeholder="Dirección IP"
+          type="text"
+        />
+        @if (formGroup.get('ip')?.touched &&
+        formGroup.get('ip')?.errors?.['required']) {
+        <p>IP es necesario</p>
+        } @if (formGroup.get('ip')?.touched &&
+        formGroup.get('ip')?.errors?.['pattern']) {
+        <p>La IP es invalida</p>
+        }
+      </div>
+
+      <div class="form_field">
+        <label for="servidor-propio">¿Servidor es propio?</label>
+        <nz-select
+          id="servidor-propio"
+          nzShowSearch
+          formControlName="servidorPropio"
+          nzAllowClear
+          nzPlaceHolder="¿Servidor es propio?"
+        >
+          @if (catalogos) { @for (item of catalogos.tipos_servidor; track
+          $index) {
+          <nz-option [nzLabel]="item" [nzValue]="item"></nz-option>
+          } }
+        </nz-select>
+
+        @if (formGroup.get('servidorPropio')?.touched &&
+        formGroup.get('servidorPropio')?.errors?.['required']) {
+        <p>Seleccione una opcion</p>
+        }
+      </div>
+
+      <div class="form_field">
+        <label for="entorno-ci">Entorno del CI</label>
+        <nz-select
+          id="entorno-ci"
+          nzShowSearch
+          nzAllowClear
+          formControlName="entornoCi"
+          nzPlaceHolder="Entorno del CI"
+        >
+          @if (catalogos) { @for (item of catalogos.entornos; track $index) {
+          <nz-option [nzLabel]="item" [nzValue]="item"></nz-option>
+          } }
+        </nz-select>
+
+        @if (formGroup.get('entornoCi')?.touched &&
+        formGroup.get('entornoCi')?.errors?.['required']) {
+        <p>Seleccione una opcion</p>
+        }
+      </div>
+
+      <div class="form_field">
+        <label for="pais-subsidiaria">País/Subsidiaria</label>
+        <nz-select
+          id="pais-subsidiaria"
+          nzShowSearch
+          nzAllowClear
+          formControlName="pais_Subsidiaria"
+          nzPlaceHolder="País/Subsidiaria"
+        >
+          @if (catalogos) { @for (item of catalogos.paises; track $index) {
+          <nz-option [nzLabel]="item" [nzValue]="item"></nz-option>
+          } }
+        </nz-select>
+        @if (formGroup.get('pais_Subsidiaria')?.touched &&
+        formGroup.get('pais_Subsidiaria')?.errors?.['required']) {
+        <p>Seleccione una opcion</p>
+        }
+      </div>
+
+      <div class="form_field">
+        <label for="nombre-aplicacion">Nombre de la Aplicación</label>
+        <nz-select
+          id="nombre-aplicacion"
+          nzShowSearch
+          nzAllowClear
+          (ngModelChange)="getJoya($event)"
+          formControlName="nombreAplicacion"
+          nzPlaceHolder="Nombre de la Aplicación"
+        >
+          @if (catalogos) { @for (item of catalogos.aplicaciones; track $index)
+          {
+          <nz-option [nzLabel]="item" [nzValue]="item"></nz-option>
+          } }
+        </nz-select>
+        @if (formGroup.get('nombreAplicacion')?.touched &&
+        formGroup.get('nombreAplicacion')?.errors?.['required']) {
+        <p>Seleccione una opcion</p>
+        }
+      </div>
+
+      <div class="form_field">
+        <label for="lenguaje">Lenguaje</label>
+        <nz-select
+          id="lenguaje"
+          nzShowSearch
+          nzAllowClear
+          formControlName="lenguaje"
+          nzPlaceHolder="Lenguaje"
+        >
+          @if (catalogos) { @for (item of catalogos.lenguajes; track $index) {
+          <nz-option [nzLabel]="item" [nzValue]="item"></nz-option>
+          } }
+        </nz-select>
+        @if (formGroup.get('lenguaje')?.touched &&
+        formGroup.get('lenguaje')?.errors?.['required']) {
+        <p>Seleccione una opcion</p>
+        }
+      </div>
+
+      <div class="form_field">
+        <label for="proveedor">Proveedor</label>
+        <nz-select
+          id="proveedor"
+          nzShowSearch
+          nzAllowClear
+          formControlName="proveedor"
+          nzPlaceHolder="Proveedor"
+        >
+          @if (catalogos) { @for (item of catalogos.proveedores; track $index) {
+          <nz-option [nzLabel]="item" [nzValue]="item"></nz-option>
+          } }
+        </nz-select>
+        @if (formGroup.get('proveedor')?.touched &&
+        formGroup.get('proveedor')?.errors?.['required']) {
+        <p>Seleccione una opcion</p>
+        }
+      </div>
+
+      <div class="form_field">
+        <label for="desarrollo">Desarrollo</label>
+        <nz-select
+          id="desarrollo"
+          nzShowSearch
+          formControlName="desarrollo"
+          nzAllowClear
+          nzPlaceHolder="Desarrollo"
+        >
+          @if (catalogos) { @for (item of catalogos.desarrollo; track $index) {
+          <nz-option [nzLabel]="item" [nzValue]="item"></nz-option>
+          } }
+        </nz-select>
+        @if (formGroup.get('desarrollo')?.touched &&
+        formGroup.get('desarrollo')?.errors?.['required']) {
+        <p>Seleccione una opcion</p>
+        }
+      </div>
+
+      <div class="form_field">
+        <label for="mesa-aplicativo">Mesa responsable del aplicativo</label>
+        <nz-select
+          id="mesa-aplicativo"
+          nzShowSearch
+          nzAllowClear
+          formControlName="mesaResponsable"
+          nzPlaceHolder="Mesa responsable del aplicativo"
+        >
+          @if (catalogos) { @for (item of catalogos.mesas; track $index) {
+          <nz-option [nzLabel]="item" [nzValue]="item"></nz-option>
+          } }
+        </nz-select>
+        @if (formGroup.get('mesaResponsable')?.touched &&
+        formGroup.get('mesaResponsable')?.errors?.['required']) {
+        <p>Seleccione una opcion</p>
+        }
+      </div>
+
+      <div class="form_field">
+        <label for="numero-rep">Número de REP</label>
+        <input
+          id="numero-rep"
+          nz-input
+          formControlName="rep"
+          placeholder="Número de REP"
+          type="text"
+        />
+        @if (formGroup.get('rep')?.touched &&
+        formGroup.get('rep')?.errors?.['required']) {
+        <p>El REP es necesario</p>
+        } @if (formGroup.get('rep')?.touched &&
+        formGroup.get('rep')?.errors?.['pattern']) {
+        <p>El REP es invalido</p>
+        }
+      </div>
+
+      <div class="form_field">
+        <label for="alojamiento">Alojamiento</label>
+        <nz-select
+          id="alojamiento"
+          nzShowSearch
+          nzAllowClear
+          formControlName="alojamiento"
+          nzPlaceHolder="Alojamiento"
+        >
+          @if (catalogos) { @for (item of catalogos.alojamientos; track $index)
+          {
+          <nz-option [nzLabel]="item" [nzValue]="item"></nz-option>
+          } }
+        </nz-select>
+        @if (formGroup.get('alojamiento')?.touched &&
+        formGroup.get('alojamiento')?.errors?.['required']) {
+        <p>Seleccione una opcion</p>
+        }
+      </div>
+
+      <div class="form_field">
+        <label for="esquema-continuidad">Esquema de continuidad</label>
+        <nz-select
+          id="esquema-continuidad"
+          nzShowSearch
+          nzAllowClear
+          formControlName="esquemaContinuidad"
+          nzPlaceHolder="Esquema de continuidad"
+        >
+          @if (catalogos) { @for (item of catalogos.esquema_de_continuidad_;
+          track $index) {
+          <nz-option [nzLabel]="item" [nzValue]="item"></nz-option>
+          } }
+        </nz-select>
+      </div>
+
+      <div class="form_field">
+        <label for="recuperacion-infra"
+          >Estrategia de recuperación de infraestructura</label
+        >
+        <nz-select
+          id="recuperacion-infra"
+          nzShowSearch
+          nzAllowClear
+          formControlName="estrategiaRecuperacionInfra"
+          nzPlaceHolder="Estrategia de recuperación de infra"
+        >
+          @if (catalogos) { @for (item of
+          catalogos.estrategias_de_recuperacion_infra_; track $index) {
+          <nz-option [nzLabel]="item" [nzValue]="item"></nz-option>
+          } }
+        </nz-select>
+      </div>
+
+      <div class="form_field">
+        <label for="recuperacion-datos"
+          >Estrategia de recuperación de datos</label
+        >
+        <nz-select
+          id="recuperacion-datos"
+          nzShowSearch
+          nzAllowClear
+          formControlName="estrategiaRecuperacionDatos"
+          nzPlaceHolder="Estrategia de recuperación de datos"
+        >
+          @if (catalogos) { @for (item of
+          catalogos.estrategias_de_recuperacion_datos_; track $index) {
+          <nz-option [nzLabel]="item" [nzValue]="item"></nz-option>
+          } }
+        </nz-select>
+      </div>
+
+      <div class="form_field">
+        <label for="instalacion-servidor"
+          >Tiempo de Instalación de Infraestructura (Servidor, SO con o sin BD)</label
+        >
+        <nz-select
+          id="instalacion-servidor"
+          nzShowSearch
+          nzAllowClear
+          formControlName="tiempoInstalacionServidor"
+          nzPlaceHolder="Tiempo de instalación del servidor"
+        >
+          @if (catalogos) { @for (item of
+          catalogos.tiempo_de_instalacion_servidor_; track $index) {
+          <nz-option [nzLabel]="item" [nzValue]="item"></nz-option>
+          } }
+        </nz-select>
+      </div>
+
+      <div class="form_field">
+        <label for="instalacion-aplicacion"
+          >Tiempo de instalación de la aplicación</label
+        >
+        <nz-select
+          id="instalacion-aplicacion"
+          nzShowSearch
+          nzAllowClear
+          formControlName="tiempoInstalacionAplicacion"
+          nzPlaceHolder="Tiempo de instalación de la aplicación"
+        >
+          @if (catalogos) { @for (item of
+          catalogos.tiempo_de_instalacion_aplicacion_; track $index) {
+          <nz-option [nzLabel]="item" [nzValue]="item"></nz-option>
+          } }
+        </nz-select>
+      </div>
+
+      <div class="form_field">
+        <label for="joya-corona">Joya de la corona</label>
+        <input
+          nz-input
+          id="joya-corona"
+          [disabled]="true"
+          formControlName="joyaCorona"
+          placeholder="Joya de la corona"
+          type="text"
+        />
+      </div>
+    </form>
+  </ng-container>
+
+  <div *nzModalFooter>
+    <button
+      nz-button
+      nzType="primary"
+      [disabled]="!formGroup.valid"
+      (click)="editOrSubmit()"
+    >
+      {{ title }}
+    </button>
+  </div>
+</nz-modal>

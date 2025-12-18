@@ -1,0 +1,31 @@
+<div class="responsive-wrapper">
+  <div class="content-header">
+    <div class="content-header-intro">
+      <h1>Bienvenido a Argos</h1>
+      <h2>Explora nuestras increíbles aplicaciones</h2>
+      <p>Descubre cómo nuestras innovadoras soluciones transformarán positivamente tu forma de trabajar.</p>
+    </div>
+  </div>
+  <div class="content">
+    <div class="content-main">
+      <div class="card-grid">
+        <article class="card" *ngFor="let card of cards">
+          <div class="card_image">
+            <img [src]="card.image" alt="card.title">
+          </div>
+          <div class="card_content">
+            <div class="content_title">
+              <h3>{{ card.title}}</h3>
+            </div>
+            <p>{{ card.description }}</p>
+            <div class="content_footer">
+              <a [routerLink]="card.url">
+                {{card.title | titlecase }}
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>

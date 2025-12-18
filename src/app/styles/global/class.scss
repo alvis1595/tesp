@@ -1,0 +1,14 @@
+// src/app/styles/main.scss
+@use './colors' as *;
+@use './mixing' as *;
+
+.container {
+  background-color: $background;
+  padding: 7px;
+  height: 100vh;
+  width: 100vw;
+}
+
+.card {
+  background-color: $card;
+}

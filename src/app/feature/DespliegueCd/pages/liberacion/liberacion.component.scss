@@ -1,0 +1,288 @@
+.filter.card {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+
+  h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #333;
+  }
+
+  .container_form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    nz-radio-group {
+      display: flex;
+      gap: 10px;
+
+      label {
+        margin-right: 10px;
+      }
+    }
+
+    // Contenedor para el input y el botón
+    .input-button-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      input[nz-input], nz-date-picker {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 25%; /* Ajusta el ancho del input a un cuarto de la pantalla */
+        height: 40px; /* Ajusta la altura del input */
+      }
+
+      button[nz-button] {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 0 15px; /* Ajusta el padding para mantener la altura */
+        background-color: #007bff;
+        border: none;
+        border-radius: 4px;
+        color: #fff;
+        cursor: pointer;
+        height: 40px; /* Ajusta la altura del botón para que coincida con la del input */
+
+        &:hover {
+          background-color: #0056b3;
+        }
+
+        nz-icon {
+          font-size: 1.2em;
+        }
+      }
+    }
+  }
+}
+
+
+nz-select {
+  margin: 0 8px 10px 0;
+  width: 100%;
+}
+.upload {
+ margin-top: 12px;
+}
+
+.container-footer {
+  [nz-button] {
+    margin-top: 12px;
+  }
+}
+
+
+.container-footer {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+
+.ant-checkbox-group-item {
+    display: block;
+    margin-right: 0;
+}
+
+.vertical-checkbox-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.vertical-checkbox-group label {
+  margin-bottom: 8px; /* Adjust spacing as needed */
+}
+
+.form {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between; /* Ensures the button is on the right */
+  margin-bottom: 16px;
+}
+
+.mt-3{
+  margin: 25px 0px;
+}
+
+[nz-radio] {
+  display: block;
+  height: 32px;
+  line-height: 32px;
+}
+
+input {
+  width: 100px;
+  margin-left: 10px;
+}
+
+.form {
+  nz-select {
+    flex: 1;
+    width: 10px;
+    margin-right: 8px;
+  }
+}
+
+.deploy-container {
+
+  h4 {
+    margin-top: 14px;
+    font-size: 1.25rem; // Ajusta el tamaño de la fuente para mejor legibilidad
+    color: #333; // Color de texto más oscuro para mejor contraste
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
+
+  // Añade estilos para otros elementos dentro del contenedor si es necesario
+  p {
+    margin: 10px 0;
+    line-height: 1.6; // Mejora la legibilidad del texto
+  }
+
+  .button {
+    padding: 10px 20px;
+    background-color: #007bff; // Color de fondo del botón
+    color: #fff; // Color del texto del botón
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #0056b3; // Color de fondo del botón al pasar el ratón
+    }
+  }
+}
+
+
+.refreshButon {
+  margin-bottom: 15px;
+}
+
+.deployStatusList{
+  margin: 15px 0px;
+}
+
+
+.container-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px; /* Ajusta el valor según la distancia que desees */
+}
+
+
+
+.container {
+  padding: 1.5rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 15px;
+
+  h3 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: #333;
+    border-bottom: 2px solid #1890ff;
+    padding-bottom: 0.5rem;
+  }
+
+  .divider {
+    .label {
+      margin: 15px 0px;
+      nz-radio-group {
+        display: flex;
+        gap: 1rem;
+
+        label[nz-radio] {
+          font-weight: 500;
+        }
+      }
+    }
+
+    .input-button-group {
+      nz-date-picker,
+      input[nz-input] {
+        flex: 1;
+        width: 350px;
+        height: 35px;
+      }
+
+      button[nz-button] {
+        white-space: nowrap;
+      }
+    }
+  }
+}
+
+input[nz-input] {
+  padding: 0.5rem 1rem;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+
+input[nz-input]:focus {
+  border-color: #1890ff;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+}
+
+input[nz-input]:invalid {
+  border-color: #ff1818;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 24, 55, 0.2);
+}
+
+app-modal-form {
+  align-self: flex-start;
+}
+
+@media (min-width: 600px) {
+  .divider {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  input[nz-input] {
+    flex: 1;
+    max-width: 300px;
+  }
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.search-box {
+  padding: 8px;
+}
+
+.search-box input {
+  width: 188px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.search-box button {
+  width: 90px;
+}
+
+.search-button {
+  margin-right: 8px;
+}
+

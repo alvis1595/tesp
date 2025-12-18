@@ -1,0 +1,51 @@
+[
+  {
+    "name": "CRQs",
+    "icon": "appstore",
+    "children": [
+      { "name": "Todos/Ventana", "url": "/crqs/todos" },
+      { "name": "Emergencia", "url": "/crqs/emergencia" },
+      { "name": "Producción", "url": "/crqs/produccion" },
+      { "name": "Reporte Producción", "url": "/crqs/reporte-produccion" },
+      { "name": "Manifiesto", "url": "/crqs/manifiesto" }
+    ]
+  },
+  {
+    "name": "PaseExpress",
+    "icon": "hdd",
+    "children": [
+      { "name": "Listado de Cambios", "url": "paseExpress/listadoDeCambios" }
+    ]
+  },
+  {
+    "name": "CRQ tracking",
+    "icon": "search",
+    "children": [
+      { "name": "Listado de Cambios", "url": "/CRQTracking/listadoDeCambios" }
+    ]
+  },
+  {
+    "name": "Despliegue CD",
+    "icon": "rocket",
+    "children": [
+      { "name": "Listado de Cambios", "url": "/DespliegueCD/Liberaciones" }
+    ]
+  },
+  {
+    "name": "CMDB",
+    "icon": "folder-add",
+    "children": [
+      { "name": "Atributos Manuales", "url": "/cmdb/atributos-manuales" },
+      { "name": "Reporte", "url": "/cmdb/reporte" }
+    ]
+  },
+  {
+    "name": "Administracion",
+    "icon": "user",
+    "children": [
+      { "name": "Capa", "url": "Administracion/capa" },
+      { "name": "Catalogo", "url": "/Administracion/catalogo" },
+      { "name": "Catalogo CMDB", "url": "/Administracion/cmdb" }
+    ]
+  }
+]

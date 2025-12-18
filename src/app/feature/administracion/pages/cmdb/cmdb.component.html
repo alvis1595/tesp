@@ -1,0 +1,39 @@
+
+<div class="container">
+  <h3>Filtro de CMDB</h3>
+
+  <div class="divider">
+     <input nz-input placeholder="Valor a filtrar" (ngModelChange)="onFilterChange($event)" [(ngModel)]="filter" type="text" />
+
+      <app-modal-form
+      [form]="FormBase"
+      title="Agregar al Catalogo"
+      type="create"
+      [editForm]="createForm"/>
+  </div>
+</div>
+
+<div class="container">
+    <nz-select nzShowSearch nzAllowClear [(ngModel)]="selectOption" (ngModelChange)="onSelectChange()">
+      @for (item of options; track $index) {
+        <nz-option  [nzLabel]="item.title" [nzValue]="item.id"></nz-option>
+      }
+    </nz-select>
+</div>
+
+<div class="container">
+  <app-table
+    [columns]="columns"
+    [data]="filteredData"
+    [loading]="muestraLoading"
+    [childColumns]="childColumns"
+    [hasEditColumn]='true'
+    [FormEdit]="editForm"
+    [MapForm]="MapForm"
+    [deleteForm]="deleteForm"
+    mTitle="Justificación del negocio"
+    >
+  </app-table>
+</div>
+
+

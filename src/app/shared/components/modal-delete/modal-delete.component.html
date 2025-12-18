@@ -1,0 +1,11 @@
+  <button nz-button [nzType]="'primary'" nzSize="small"  nzDanger (click)="showModal()">
+    <nz-icon nzType="delete"  />
+  </button>
+    <nz-modal [(nzVisible)]="isVisible" nzTitle="Estas seguro de eliminar ?" nzOkDanger="true" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+    <ng-container *nzModalContent>
+      <div class="modal-content">
+        <p class="modal-message">Se procederá a eliminar el siguiente elemento:</p>
+        <pre class="modal-json">{{ form | json }}</pre>
+      </div>
+    </ng-container>
+    </nz-modal>

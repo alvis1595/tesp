@@ -1,0 +1,28 @@
+
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #374151; // gray-700
+  text-transform: capitalize;
+}
+
+.form-input {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db; // gray-300
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+
+  &:focus {
+    outline: none;
+    border-color: #3b82f6; // blue-500
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+  }
+}

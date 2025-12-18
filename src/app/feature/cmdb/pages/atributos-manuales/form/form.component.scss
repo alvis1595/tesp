@@ -1,0 +1,32 @@
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  .form_field {
+    flex: 1 1 45%; // Ajusta el tamaño de las columnas
+    min-width: 250px; // Ancho mínimo para cada campo
+    height: 75px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  input,
+  nz-select {
+    width: 100%;
+    border: 1px solid #e0e0e0;
+    box-sizing: border-box;
+    input {
+      border: none;
+    }
+  }
+
+  .form_field p {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+}

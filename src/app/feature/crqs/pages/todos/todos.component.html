@@ -1,0 +1,87 @@
+<div class="container">
+  <h3>Listado De Cambios Todos/Ventana</h3>
+
+  <div class="divider">
+    <nz-date-picker
+      [(ngModel)]="date"
+      (ngModelChange)="validateButton()"
+    ></nz-date-picker>
+    <button
+      nz-button
+      nzType="primary"
+      [disabled]="btnStatus"
+      (click)="onChange()"
+    >
+      <nz-icon nzType="search" />
+      Buscar
+    </button>
+  </div>
+</div>
+
+<div class="container">
+  <div class="table-container">
+    <app-table
+      [columns]="columns"
+      [data]="data"
+      [loading]="muestraLoading"
+      (indexModal)="setIndexModal($event)"
+      [childColumns]="childColumns"
+      [hasExpandColumn]="hasExpandColumn"
+      [mTitle]="crqInfo.REP"
+    >
+      @if (crqInfo){
+      <div class="header">
+        <h2>Justificacion del Negocio</h2>
+        <p>{{ crqInfo.children[0].JustificacionDelNegocio }}</p>
+      </div>
+
+      <div class="content_element">
+        <h2>Elementos</h2>
+        <div class="element">
+          <h4>Elementos en CRQ Artifacts:</h4>
+          @if (CRQElements) {
+          <ul>
+            @for (elements of CRQElements; track $index) {
+            <li>{{ elements }}</li>
+            }
+          </ul>
+          } @else {
+          <ul>
+            <li>No hay elementos en tierra</li>
+          </ul>
+          }
+          <h4>Elementos en JFROG:</h4>
+          @if (jfrogElements) {
+          <ul>
+            @for (elements of jfrogElements; track $index) {
+            <li>{{ elements }}</li>
+            }
+          </ul>
+          } @else {
+          <ul>
+            <li>No hay elementos en JFROG</li>
+          </ul>
+          }
+        </div>
+      </div>
+
+      <div class="content_informador">
+        <h2>Informacion</h2>
+
+        <div class="informador">
+          @if (crqInfo.children[0].Grupoinformador) {
+          <h4>
+            Grupo:
+            <strong>{{
+              crqInfo.children[0].Grupoinformador ?? "El campo esta vacio"
+            }}</strong>
+          </h4>
+          } @if (crqInfo.children[0].enlaceJfrog != '') {
+          <a [href]="getUrl(crqInfo.children[0].enlaceJfrog)">Enlace JFROG</a>
+          }
+        </div>
+      </div>
+      }
+    </app-table>
+  </div>
+</div>

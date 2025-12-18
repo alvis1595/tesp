@@ -1,0 +1,110 @@
+<div class="container">
+  <h3>Filtro de Catalogo</h3>
+    <div class="divider">
+     <input nz-input placeholder="Valor a filtrar" (ngModelChange)="onFilterChange($event)" [(ngModel)]="filter" type="text" />
+
+      <app-modal-form
+        [form]="FormBase"
+        title="Crear Capa"
+        type="create"
+        [editForm]="createForm"/>
+  </div>
+</div>
+
+<div class="container">
+  <app-table
+    [columns]="columns"
+    [data]="filteredData"
+    [loading]="muestraLoading"
+    [childColumns]="childColumns"
+    [hasEditColumn]='true'
+    [hasExpandColumn]="true"
+    [FormEdit]="editForm"
+    [deleteForm]="deleteForm"
+    (indexModal)="setIndexModal($event)"
+    mTitle="Propiedades"
+    >
+  @if (modal) {
+  <form
+      nz-form
+      nzLayout='vertical'
+      [formGroup]="validateForm"
+      (ngSubmit)="submitForm()"
+    >
+      <nz-form-item>
+        <nz-form-label [nzSpan]="null">Servicio</nz-form-label>
+        <nz-form-control [nzSpan]=" null" nzErrorTip="Porfavor Ingresa el servicio">
+          <input nz-input formControlName="Servicio" placeholder="input placeholder" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="null">Mesa Resp Desa</nz-form-label>
+        <nz-form-control [nzSpan]=" null" nzErrorTip="Porfavor Ingresa la mesa de desarrollo">
+          <input nz-input formControlName="Mesa_Resp_Desa" placeholder="input placeholder" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="null">Mesa Resp Infra</nz-form-label>
+        <nz-form-control [nzSpan]=" null" nzErrorTip="Porfavor Ingresa la mesa de infra">
+          <input nz-input formControlName="Mesa_Resp_Infra" placeholder="input placeholder" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label nzRequired [nzSpan]="null">Capa</nz-form-label>
+          <nz-form-control
+            [nzSpan]=" null"
+            nzErrorTip="Porfavor selecciona la capa">
+          <nz-select nzShowSearch nzAllowClear formControlName="Capa" >
+            @if (select) {
+              @for (element of select; track element.descripcion) {
+                <nz-option [nzValue]="element.cc_id" [nzLabel]="element.descripcion ?? ''"></nz-option>
+              }
+            }@else {
+              <nz-option nzValue="disabled" nzLabel="Disabled" nzDisabled></nz-option>
+            }
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label nzRequired [nzSpan]="null">Activo</nz-form-label>
+        <nz-form-control [nzSpan]=" null" nzErrorTip="Porfavor validar si se desea activar">
+          <nz-select formControlName="Activo">
+            <nz-option nzValue="T" nzLabel="Activo" ></nz-option>
+            <nz-option nzValue="F" nzLabel="Inactivo" ></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+
+
+      <nz-form-item>
+        <nz-form-label nzRequired  [nzSpan]="null">Estado</nz-form-label>
+        <nz-form-control [nzSpan]=" null" nzErrorTip="Porfavor Ingresa la mesa de infra">
+          <nz-select formControlName="Estado">
+            <nz-option nzValue="P" nzLabel="Produccion" ></nz-option>
+            <nz-option nzValue="C" nzLabel="Contingencia" ></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label nzRequired  [nzSpan]="null">Requiere Pase</nz-form-label>
+        <nz-form-control [nzSpan]=" null" nzErrorTip="Porfavor Ingresa la mesa de infra">
+          <nz-select formControlName="Pase">
+            <nz-option nzValue="T" nzLabel="Activo" ></nz-option>
+            <nz-option nzValue="F" nzLabel="Inactivo" ></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-control [nzSpan]=" null" [nzOffset]="null">
+          <button nz-button nzType="primary" [disabled]="!validateForm.valid">Guardar</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  }
+
+  </app-table>
+</div>

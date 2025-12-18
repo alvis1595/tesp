@@ -1,0 +1,120 @@
+<nz-table
+  #filterTable
+  [nzData]="listOfDisplayData"
+  [nzPageSize]="nzPageSize"
+  [nzLoading]="loading"
+  [nzPageIndex]="pageIndex"
+  (nzPageIndexChange)="onPageChange($event)"
+>
+  <thead>
+    <tr>
+      <th id="expandColumn" nzWidth="100px" *ngIf="hasExpandColumn"></th>
+      @for (column of columns; track column) {
+      <th
+        [id]="column.key"
+        [nzFilterMultiple]="column.filterMultiple"
+        [nzFilters]="column.listOfFilter"
+        [nzFilterFn]="column.filterFn"
+      >
+        {{ column.title }}
+        <ng-container *ngIf="column.title == 'Cambio'">
+          <nz-filter-trigger
+            [(nzVisible)]="column.filtro_visible"
+            [nzActive]="searchValue.length > 0"
+            [nzDropdownMenu]="menu"
+          >
+            <nz-icon nzType="search" />
+          </nz-filter-trigger>
+          <nz-dropdown-menu #menu="nzDropdownMenu">
+            <div class="ant-table-filter-dropdown">
+              <div class="search-box">
+                <input
+                  type="text"
+                  nz-input
+                  placeholder="Buscar"
+                  [(ngModel)]="searchValue"
+                />
+                <button
+                  nz-button
+                  nzSize="small"
+                  nzType="primary"
+                  (click)="search(column.key)"
+                  class="search-button"
+                >
+                  Buscar
+                </button>
+                <button nz-button nzSize="small" (click)="reset()">
+                  Reset
+                </button>
+              </div>
+            </div>
+          </nz-dropdown-menu>
+        </ng-container>
+      </th>
+      }
+      <th
+        id="hasEditColumn"
+        nzWidth="100px"
+        *ngIf="hasEditColumn && data.length > 0"
+      >
+        Acciones
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (row of filterTable.data; track data; let i = $index) {
+    <ng-container>
+      <tr>
+        <td *ngIf="hasExpandColumn">
+          <button
+            (click)="showModal(row)"
+            nz-button
+            nzType="default"
+          >
+            <nz-icon [nzType]="iconBtn" nzTheme="outline" />
+          </button>
+        </td>
+        <td
+          *ngFor="let column of columns"
+          [nzLeft]="column.fixed === 'left'"
+          [nzRight]="column.fixed === 'right'"
+          [ngClass]="getCellClass(row[column.key])"
+        >
+          <!-- <span [innerHTML]="isHtml(row[column.key]) ? sanitize(row[column.key]) : row[column.key]"></span> -->
+          <span [innerHTML]="row[column.key]"></span>
+        </td>
+        @if (hasEditColumn && filterTable.data.length > 0) {
+        <td class="space">
+          <app-modal-form
+            title="Edicion"
+            [editForm]="FormEdit"
+            [mapForm]="MapForm"
+            [form]="data[getGlobalIndex(i)]"
+          />
+
+          <app-modal-delete
+            [deletForm]="deleteForm"
+            [form]="data[getGlobalIndex(i)]"
+          />
+        </td>
+        }
+      </tr>
+    </ng-container>
+    }
+  </tbody>
+</nz-table>
+
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="modalTitle"
+  [nzContent]="modalContent"
+  (nzOnCancel)="handleCancel()"
+>
+  <ng-template #modalTitle>
+    <h2>{{ mTitle | uppercase }}</h2>
+  </ng-template>
+
+  <ng-template #modalContent>
+    <ng-content></ng-content>
+  </ng-template>
+</nz-modal>

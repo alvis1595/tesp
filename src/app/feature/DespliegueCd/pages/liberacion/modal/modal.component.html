@@ -1,0 +1,352 @@
+<button
+  nz-button
+  nzType="primary"
+  [ngStyle]="{
+    'background-color': getColor(data.pipelines),
+    'border-color': getColor(data.pipelines)
+  }"
+  (click)="showModal()"
+>
+  <nz-icon nzType="rocket" nzTheme="outline" />
+</button>
+
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="modalTitle"
+  [nzContent]="modalContent"
+  [nzFooter]="modalFooter"
+  nzWidth="700px"
+  (nzOnCancel)="handleCancel()"
+>
+  <ng-template #modalTitle
+    >{{ data.Rep }} - {{ data.Fecha | date }}</ng-template
+  >
+
+  <ng-template #modalContent>
+    <div class="content">
+      <div class="content_business">
+        <h2>Justificacion Del Negocio</h2>
+        @if (data) {
+        <p>{{data?.children?.[0]?.JustificacionDelNegocio}}</p>
+        }
+      </div>
+
+      <div class="content_deploy">
+        <div class="select_deploy">
+          <nz-select
+            style="width: 200px"
+            [nzMaxTagCount]="1"
+            [nzMaxTagPlaceholder]="tagPlaceHolder"
+            nzMode="multiple"
+            nzPlaceHolder="Tecnologia"
+            [(ngModel)]="listOfSelectedValue"
+          >
+            @for (item of tecnologyOptions; track item) {
+            <nz-option
+              [nzLabel]="item.toLocaleLowerCase()"
+              [nzValue]="item"
+            ></nz-option>
+            }
+          </nz-select>
+          <ng-template #tagPlaceHolder let-selectedList
+            >{{ selectedList.length }} +</ng-template
+          >
+        </div>
+
+        <div class="select_deploy">
+          <nz-select
+            [(ngModel)]="selectEnv"
+            style="width: 200px"
+            nzPlaceHolder="Ambiente"
+          >
+            @for (env of listOfOptionEnv; track $index) {
+            <nz-option
+              [nzLabel]="env.toLocaleLowerCase()"
+              [nzValue]="env"
+            ></nz-option>
+            }
+          </nz-select>
+        </div>
+
+        <div class="select_deploy_btn">
+          @if (btnLoading) {
+          <button nz-button disabled nzType="primary" (click)="confirmDeploy()">
+            <nz-icon nzType="loading" nzTheme="outline" nzLoading />
+            Liberar
+          </button>
+          }@else { @if (listOfSelectedValue.length > 0) {
+
+          <button
+            nz-button
+            nzType="primary"
+            (click)="confirmDeploy()"
+            [disabled]="isButtonEnabled"
+          >
+            <nz-icon nzType="rocket" />
+            Liberar
+          </button>
+          }@else {
+          <button nz-button nzType="primary" (click)="confirmDeploy()" disabled>
+            <nz-icon nzType="rocket" />
+            Liberar
+          </button>
+          } } @if (!isButtonEnabled) { @if (!isButtonEnabled) { @if
+          (listOfSelectedValue.length == 0) {
+          <button nz-button nzType="default" (click)="modalReversar()" disabled>
+            <nz-icon nzType="rollback" nzTheme="outline" />
+            Reversa
+          </button>
+          }@else {
+          <button nz-button nzType="dashed" nzDanger (click)="modalReversar()">
+            <nz-icon nzType="rollback" nzTheme="outline" />
+            Reversa
+          </button>
+          } }@else {
+          <button nz-button nzType="default" disabled (click)="modalReversar()">
+            <nz-icon nzType="rollback" nzTheme="outline" />
+            Reversa
+          </button>
+          }
+
+          <nz-modal
+            [(nzVisible)]="isVisibleReversa"
+            nzTitle="Estas seguro de reversar?"
+            [nzContent]="modalContentReversa"
+            [nzFooter]="modalFooterReversa"
+            (nzOnCancel)="handleCancelReversa()"
+          >
+            <ng-template #modalContentReversa>
+              <div class="field">
+                <h3>
+                  Se va a reversar los siguientes tecnologias de manera
+                  completa:
+                  <ul>
+                    @for (job of listOfSelectedValue; track $index) {
+                    <li>{{ job }}</li>
+                    }
+                  </ul>
+                </h3>
+              </div>
+              @if (listOfSelectedValue.length == 1) {
+              <div class="field">
+                <label nz-checkbox [(ngModel)]="reversarTodo"
+                  >Reversar Todo</label
+                >
+              </div>
+
+              <div class="field">
+                @if (!reversarTodo) {
+                <h3>Elementos</h3>
+                <input
+                  nz-input
+                  placeholder=""
+                  [(ngModel)]="reversarElementos"
+                />
+                <p>
+                  Ingrese el nombre de los elementos que desea reversar.Los
+                  mismos deben ir separador por coma como se muestran a
+                  continuacion Ejemplo: CRQ00000288949.mqm, CRQ2439.mqsc
+                </p>
+                }
+              </div>
+              }
+            </ng-template>
+
+            <ng-template #modalFooterReversa>
+              @if (!reversaLoading) {
+              <button
+                nz-button
+                nzType="default"
+                nzDanger
+                (click)="handleCancelReversa()"
+              >
+                Cancelar
+              </button>
+              <button
+                nz-button
+                nzType="primary"
+                (click)="reversarAction()"
+                [nzLoading]="isConfirmLoading"
+              >
+                Realizar
+              </button>
+              }@else {
+              <button nz-button nzType="primary" nzLoading>
+                <nz-icon nzType="poweroff" />
+                Cargando
+              </button>
+              }
+            </ng-template>
+          </nz-modal>
+          }
+        </div>
+      </div>
+
+      <div class="deploy_container" *ngIf="groupedDeployStatus">
+        <div class="abort-status" *ngIf="groupedDeployStatus['Abortado']">
+          <h2>Abortados</h2>
+          <ng-container *ngFor="let item of groupedDeployStatus['Abortado']">
+            <a [href]="getUrl(item.url)" target="_blank"
+              >#{{ extraerNumeroDesdeHTML(item.url) }}
+              {{ item.nomb_estado | uppercase }} - {{ item.l_user }}</a
+            >
+            <nz-steps
+              class="deployStatusList"
+              [nzCurrent]="2"
+              nzSize="small"
+              nzStatus="error"
+            >
+              <nz-step nzTitle="Inicio" nzIcon="rocket"></nz-step>
+              <nz-step nzTitle="En Progreso"></nz-step>
+              <nz-step nzTitle="Abortado"></nz-step>
+            </nz-steps>
+          </ng-container>
+        </div>
+
+        <!-- Fallidos -->
+        <div class="fail-status" *ngIf="groupedDeployStatus['Fallo']">
+          <h2>Fallidos</h2>
+          <ng-container *ngFor="let item of groupedDeployStatus['Fallo']">
+            <a [href]="getUrl(item.url)" target="_blank"
+              >#{{ extraerNumeroDesdeHTML(item.url) }}
+              {{ item.nomb_estado | uppercase }} - {{ item.l_user }}</a
+            >
+            <nz-steps
+              class="deployStatusList"
+              [nzCurrent]="2"
+              nzSize="small"
+              nzStatus="error"
+            >
+              <nz-step nzTitle="Inicio" nzIcon="rocket"></nz-step>
+              <nz-step nzTitle="En Progreso"></nz-step>
+              <nz-step nzTitle="Fallido"></nz-step>
+            </nz-steps>
+          </ng-container>
+        </div>
+
+        <div
+          class="aprove-status"
+          *ngIf="groupedDeployStatus['Necesito Activar']"
+        >
+          <h2>Por Aprobacion</h2>
+          <ng-container
+            *ngFor="let item of groupedDeployStatus['Necesito Activar']"
+          >
+            <a [href]="getUrl(item.url)" target="_blank"
+              >#{{ extraerNumeroDesdeHTML(item.url) }}
+              {{ item.nomb_estado | uppercase }} - {{ item.l_user }}</a
+            >
+            <nz-steps
+              class="deployStatusList"
+              [nzCurrent]="2"
+              nzSize="small"
+              (nzIndexChange)="checkStatusJob(item.nomb_estado.toLowerCase())"
+            >
+              <nz-step nzTitle="Inicio" nzIcon="rocket"></nz-step>
+              <nz-step nzTitle="Por Aprobar" nzIcon="warning"></nz-step>
+              <nz-step nzTitle="Finalizado"></nz-step>
+            </nz-steps>
+          </ng-container>
+        </div>
+
+        <div class="deploy-status" *ngIf="groupedDeployStatus['Liberado']">
+          <h2>Liberados</h2>
+          <ng-container *ngFor="let item of groupedDeployStatus['Liberado']">
+            <a [href]="getUrl(item.url)" target="_blank"
+              >#{{ extraerNumeroDesdeHTML(item.url) }}
+              {{ item.nomb_estado | uppercase }} - {{ item.l_user }}</a
+            >
+            <nz-steps
+              class="deployStatusList"
+              [nzCurrent]="3"
+              nzSize="small"
+              nzStatus="finish"
+            >
+              <nz-step nzTitle="Inicio"></nz-step>
+              <nz-step nzTitle="En Progreso"></nz-step>
+              <nz-step nzTitle="Liberado"></nz-step>
+            </nz-steps>
+          </ng-container>
+        </div>
+
+        <div class="inProgress-status" *ngIf="groupedDeployStatus['Liberando']">
+          <h2>En progreso</h2>
+          <ng-container *ngFor="let item of groupedDeployStatus['Liberando']">
+            <a [href]="getUrl(item.url)" target="_blank"
+              >#{{ extraerNumeroDesdeHTML(item.url) }}
+              {{ item.nomb_estado | uppercase }} - {{ item.l_user }}</a
+            >
+            <nz-steps class="deployStatusList" [nzCurrent]="2" nzSize="small">
+              <nz-step nzTitle="Inicio" nzIcon="rocket"></nz-step>
+              <nz-step nzTitle="En Progreso" nzIcon="loading"></nz-step>
+              <nz-step nzTitle="Finalizado"></nz-step>
+            </nz-steps>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="content_element">
+        <h2>Elementos</h2>
+
+        <div class="element">
+          <h4>Elementos en CRQ Artifacts:</h4>
+          @if (CRQElements) {
+          <ul>
+            @for (elements of CRQElements; track $index) {
+            <li>{{ elements }}</li>
+            }
+          </ul>
+          } @else {
+          <ul>
+            <li>No hay elementos en tierra</li>
+          </ul>
+          }
+          <h4>Elementos en JFROG:</h4>
+          @if (jfrogElements) {
+          <ul>
+            @for (elements of jfrogElements; track $index) {
+            <li>{{ elements }}</li>
+            }
+          </ul>
+          } @else {
+          <ul>
+            <li>No hay elementos en JFROG</li>
+          </ul>
+          }
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #modalFooter>
+    <div class="container">
+      <p><strong>Implementador:</strong> {{ data.Implementador }}</p>
+    </div>
+  </ng-template>
+</nz-modal>
+
+<nz-modal
+  [(nzVisible)]="isVisibleAction"
+  [nzTitle]="data.Rep"
+  (nzOnCancel)="cancelJob()"
+  nzCancelText="Abortar"
+>
+  <ng-container *nzModalContent>
+    <h2>¿Estás seguro de proceder con la liberación?</h2>
+    <p><strong>Mensaje:</strong> {{ jobMessage.estadoinput }}</p>
+  </ng-container>
+
+  <div *nzModalFooter>
+    <button nz-button nzType="primary" nzDanger (click)="actionDeploy('No')">
+      Abortar
+    </button>
+    <button
+      nz-button
+      nzType="primary"
+      (click)="actionDeploy('Si')"
+      [nzLoading]="isConfirmLoading"
+    >
+      Confirmar
+    </button>
+  </div>
+</nz-modal>

@@ -1,0 +1,71 @@
+<nz-layout class="app-layout">
+  <nz-sider
+    class="menu-sidebar"
+    nzCollapsible
+    nzWidth="256px"
+    nzBreakpoint="md"
+    [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null"
+  >
+    <div class="sidebar-logo">
+      <a routerLink="/homePage">
+        <img src="argos_favi.png" alt="Argos logo" />
+        Argos
+      </a>
+    </div>
+    <ul
+      nz-menu
+      nzTheme="dark"
+      nzMode="inline"
+      [nzInlineCollapsed]="isCollapsed"
+    >
+      <ng-container *ngFor="let menu of menus">
+        <ng-container *ngIf="menu.children && menu.children.length > 0">
+          <li nz-submenu [nzTitle]="menu.name" nzIcon="{{ menu.icon }}">
+            <ul>
+              <li
+                nz-menu-item
+                *ngFor="let child of menu.children"
+                (click)="navigateTo(child.url)"
+              >
+                {{ child.name }}
+              </li>
+            </ul>
+          </li>
+        </ng-container>
+        <ng-container
+          *ngIf="
+            !menu.children || (menu.children && menu.children.length === 0)
+          "
+        >
+          <li nz-menu-item (click)="navigateTo(menu.name)">
+            {{ menu.url }}
+          </li>
+        </ng-container>
+      </ng-container>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+          <nz-icon
+            class="trigger"
+            [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+          ></nz-icon>
+        </span>
+        <div class="right_image">
+          <button nz-button routerLink="/auth" nzType="primary" nzShape="round">
+            <nz-icon nzType="logout"  />
+            Logout
+          </button>
+        </div>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

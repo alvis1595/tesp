@@ -1,0 +1,91 @@
+.content_deploy {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: baseline;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.select_deploy_btn {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.field {
+  padding-top: 15px;
+}
+
+.content_deploy_status {
+  display: flexbox;
+}
+.deploy_container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+
+  .deploy-status a:not(:first-of-type),
+  .abort-status a:not(:first-of-type),
+  .fail-status a:not(:first-of-type),
+  .aprove-status a:not(:first-of-type),
+  .inProgress-status a:not(:first-of-type) {
+    margin-top: 15px;
+    display: inline-block;
+  }
+
+  .abort-status,
+  .aprove-status,
+  .deploy-status,
+  .fail-status,
+  .inProgress-status {
+    background-color: #fff;
+    border-left: 5px solid;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+
+    h2 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    a {
+      display: inline-block;
+      margin-bottom: 10px;
+      color: #007acc;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .deployStatusList {
+      margin-top: 10px;
+    }
+  }
+
+  .abort-status {
+    border-color: #D7D7D7;
+  }
+
+  .fail-status {
+    border-color: #c01b1b;
+  }
+
+  .aprove-status {
+    border-color: #faad14;
+  }
+
+  .deploy-status {
+    border-color: #52c41a;
+  }
+
+  .inProgress-status {
+    border-color: #1890ff;
+  }
+}

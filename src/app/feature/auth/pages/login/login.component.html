@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="container_image">
+    <img class="max" src="app-login.png" alt="" />
+  </div>
+    <div class="container_form">
+    <form
+      nz-form
+      class="form_group card"
+      [formGroup]="userForm"
+      (ngSubmit)="login()"
+    >
+      <div class="container_header">
+        <img src="argos_favi.png" alt="argos logo" />
+        <div class="header_title">
+          <h2 class="title">Iniciar Sesión</h2>
+        </div>
+      </div>
+
+      <div class="group_field">
+        <label for="password">Usuario</label>
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Por favor ingrese el usuario!">
+            <nz-input-group nzPrefixIcon="user">
+              <input
+                type="text"
+                nz-input
+                formControlName="username"
+                placeholder="Username"
+              />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div class="group_field">
+        <label for="password">Contraseña</label>
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Por favor ingrese su contraseña">
+            <nz-input-group nzPrefixIcon="lock">
+              <input
+                type="password"
+                nz-input
+                formControlName="password"
+                placeholder="Password"
+              />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div class="remeber-check">
+        <label nz-checkbox formControlName="remember">
+          <span>Recordar Usuario</span>
+        </label>
+      </div>
+
+      <button nz-button nzType="primary" nzBlock>Login</button>
+    </form>
+  </div>
+</div>

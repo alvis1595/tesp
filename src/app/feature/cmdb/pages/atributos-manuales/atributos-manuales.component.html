@@ -1,0 +1,83 @@
+<div class="container">
+  <h3>Atributos Manuales</h3>
+
+  <div class="divider">
+    <input
+      nz-input
+      placeholder="Filtro"
+      [(ngModel)]="filterValue"
+      (ngModelChange)="onFilterChange($event)"
+      type="text"
+    />
+    <app-form></app-form>
+  </div>
+</div>
+
+<div class="container">
+  <div class="table-container">
+    <nz-table #basicTable [nzData]="CMDB_filter" [nzScroll]="{ x: '1200px' }" [nzLoading]="muestraLoading">
+      <thead>
+        <tr>
+          <th nzWidth="100px" scope="col">#</th>
+          <th nzWidth="200px" scope="col">Servidor</th>
+          <th nzWidth="200px" scope="col">IP</th>
+          <th nzWidth="200px" scope="col">Tipo Servidor</th>
+          <th nzWidth="200px" scope="col">Entorno del CI</th>
+          <th nzWidth="200px" scope="col">Pais</th>
+          <th nzWidth="200px" scope="col">Aplicacion</th>
+          <th nzWidth="200px" scope="col">Lenguaje</th>
+          <th nzWidth="200px" scope="col">Proveedor</th>
+          <th nzWidth="200px" scope="col">Desarrollo</th>
+          <th nzWidth="200px" scope="col">Mesa Responsable</th>
+          <th nzWidth="200px" scope="col">Numero de REP</th>
+          <th nzWidth="200px" scope="col">Alojamiento</th>
+          <th nzWidth="200px" scope="col">Esquema de Continuidad</th>
+          <th nzWidth="200px" scope="col">Estrategias de Recuperacion Infra</th>
+          <th nzWidth="200px" scope="col">Estrategias de Recuperacion Datos</th>
+          <th nzWidth="200px" scope="col">Tiempo de instalacion servidor</th>
+          <th nzWidth="200px" scope="col">Tiempo de instalacion aplicacion</th>
+          <th nzWidth="200px" scope="col">Joya de la corona</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (data of basicTable.data; track data) {
+        <tr>
+          @if(data.creador == user || roles.includes('ccyl')) {
+          <td class="actions">
+            <app-form
+              (refrescarDatos)="getData()"
+              type="editar"
+              [data]="data"
+            ></app-form>
+            @if (roles.includes('ccyl')) {
+            <app-delete (refrescarDatos)="getData()" [data]="data"></app-delete>
+            }
+          </td>
+          }@else {
+          <td></td>
+          }
+          <td>{{ data.servidor }}</td>
+          <td>{{ data.ip }}</td>
+          <td>{{ data.tipo_servidor }}</td>
+          <td>{{ data.entorno_ci }}</td>
+          <td>{{ data.pais }}</td>
+          <td nzBreakWord>{{ data.aplicacion }}</td>
+          <td>{{ data.lenguaje }}</td>
+          <td>{{ data.proveedor }}</td>
+          <td>{{ data.desarrollo }}</td>
+          <td>{{ data.responsable }}</td>
+          <td>{{ data.rep }}</td>
+          <td>{{ data.alojamiento }}</td>
+          <td>{{ data.esquema_de_continuidad }}</td>
+          <td>{{ data.estrategias_de_recuperacion_infra }}</td>
+          <td>{{ data.estrategias_de_recuperacion_datos }}</td>
+          <td>{{ data.tiempo_de_instalacion_servidor }}</td>
+          <td>{{ data.tiempo_de_instalacion_aplicacion }}</td>
+          <td>{{ data.joya_de_la_corona }}</td>
+        </tr>
+        }
+      </tbody>
+    </nz-table>
+  </div>
+</div>
+

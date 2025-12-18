@@ -1,0 +1,24 @@
+.modal-content {
+  padding: 16px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.modal-message {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 12px;
+  color: #d9534f; /* rojo suave para advertencia */
+}
+
+.modal-json {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  padding: 12px;
+  font-size: 14px;
+  max-height: 300px;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}

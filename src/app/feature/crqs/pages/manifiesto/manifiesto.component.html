@@ -1,0 +1,115 @@
+<div class="container">
+  <h3 class="title">Manifiesto {{rep}} - Mesa: {{mesa }}</h3>
+
+  <div class="divider">
+    <input nz-input
+      placeholder="Valor a filtrar"
+      placeholder="REP- + enter"
+      (keydown)="onKeydown($event)"
+      [(ngModel)]="rep"
+      type="text" />
+  </div>
+</div>
+
+<div *ngIf="loading && manifest">
+  <div class="container">
+    <nz-icon nzType="loading" nzTheme="outline"></nz-icon>
+  </div>
+</div>
+<div *ngIf="!loading && !error">
+<div class="container">
+  <h2 class="title">Componentes del REP</h2>
+
+  <div
+    cdkDropList
+    [cdkDropListData]="repositories"
+    class="repository-list"
+    (cdkDropListDropped)="dropRepository($event)"
+  >
+    <div
+      *ngFor="let repo of repositories; let i = index"
+      cdkDrag
+      class="repository-item"
+    >
+      <div class="repository-card">
+        <div>
+          <div class="repository-order">
+            <p><strong>Orden de despliegue:</strong> {{ repo.deployOrder || i+1 + ' (Por defecto / Sin modificar)' }}</p>
+          </div>
+
+          <div class="repository-details">
+            <p>
+              <strong>Repositorio:</strong> {{ repo.repository }}
+              <button
+                class="copy-btn"
+                [class.copied]="copiedIndex === i && copiedField === 'repository'"
+                (click)="copyToClipboard(repo.repository, i, 'repository')"
+                aria-label="Copiar repositorio"
+              >
+                {{ copiedIndex === i && copiedField === 'repository' ? 'Copiado ✔' : 'Copiar 📋' }}
+              </button>
+              <button class="copy-btn"
+                      (click)="openLink('https://app.circleci.com/pipelines/bitbucket/bg-ti/'+repo.repository)"
+                      aria-label="Abrir repositorio en nueva pestaña">
+                CircleCI
+                <img src="main/crqs/circleci_logo.png" alt="CircleCI Logo" width="16" height="16" >
+              </button>
+              <button class="copy-btn"
+                      (click)="openLink('https://bitbucket.org/bg-ti/'+repo.repository)"
+                      aria-label="Abrir repositorio en nueva pestaña">
+                BitBucket
+                <img src="main/crqs/bitbucket_logo.png" alt="BitBucket Logo" width="16" height="16" >
+              </button>
+            </p>
+
+            <p>
+              <strong>Artefacto #:</strong> {{ repo.artifact }}
+              <button
+                class="copy-btn"
+                [class.copied]="copiedIndex === i && copiedField === 'artifact'"
+                (click)="copyToClipboard(repo.artifact, i, 'artifact')"
+                aria-label="Copiar artefacto"
+              >
+                {{ copiedIndex === i && copiedField === 'artifact' ? 'Copiado ✔' : 'Copiar 📋' }}
+              </button>
+            </p>
+            <p><strong>Application Name:</strong> {{ repo["application-name"] }}</p>
+            <p><strong>Tecnología:</strong> {{ repo.tech }}</p>
+            <p><strong>Paralelismo:</strong> {{ repo.parallelism ? 'Sí' : 'No' }}</p>
+            
+            <p><strong>Regiones a omitir:</strong> {{ repo.skipRegions.join(', ') || 'Ninguna' }}</p>
+          </div>
+        </div>
+
+        <div class="repository-actions">
+          <button
+            class="delete-btn"
+            (click)="deleteRepository(i)"
+            aria-label="Eliminar"
+          >
+            ✖
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div *ngIf="error">
+  <div class="container">
+    <h5>
+      Por favor, verifica si el manifiesto asociado con el REP: {{ rep }} es correcto.
+    </h5>
+  </div>
+</div>
+<div *ngIf="!loading && technologies.length === 0">
+  <div class="container">
+    <h5>
+      No se encontraron tecnologías en el manifiesto.
+    </h5>
+  </div>
+</div>
+
+<div class="footer" *ngIf="content">
+  <button nz-button nzType="primary" [disabled]="!rep || isSaveDisabled" (click)="openConfirmationModal()">Guardar</button>
+</div>

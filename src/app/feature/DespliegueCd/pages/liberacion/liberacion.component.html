@@ -1,0 +1,125 @@
+<div class="container">
+  <h3>Liberaciones</h3>
+
+  <div class="divider">
+    <div class="label">
+      <nz-radio-group [(ngModel)]="modeSelect" (ngModelChange)="reset()">
+        <label nz-radio nzValue="REP">REP</label>
+        <label nz-radio nzValue="Fecha">Fecha</label>
+      </nz-radio-group>
+    </div>
+    <div class="input-button-group">
+      @if (modeSelect=="Fecha") {
+      <nz-date-picker [(ngModel)]="dateSearch" (ngModelChange)="validateButton()"></nz-date-picker>
+      } @else {
+      <input
+        nz-input
+        placeholder="Ingrese el componente o REP"
+        [(ngModel)]="elementSearch"
+        (ngModelChange)="validateButton()"
+        type="text"
+      />
+      }
+      <button nz-button nzType="primary" [disabled]="btnStatus" (click)="onChange()">
+        <nz-icon nzType="search" />
+        Buscar
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="table-container">
+    <nz-table
+      #basicTable
+      [nzLoading]="muestraLoading"
+      [nzData]="data"
+      [nzScroll]="{ x: '1200px' }"
+    >
+      <thead>
+        <tr>
+          <th nzWidth="25px" scope="col">#</th>
+          <th nzCustomFilter nzWidth="100px" scope="col">
+            Cambio
+            <nz-filter-trigger [(nzVisible)]="visibleCambio" [nzActive]="searchCambio.length > 0" [nzDropdownMenu]="menuCambio">
+              <nz-icon nzType="search" />
+            </nz-filter-trigger>
+          </th>
+          <th nzCustomFilter nzWidth="100px" scope="col">
+            Implementador
+            <nz-filter-trigger [(nzVisible)]="visibleImplementador" [nzActive]="searchImplementador.length > 0" [nzDropdownMenu]="menuImplementador">
+              <nz-icon nzType="search" />
+            </nz-filter-trigger>
+          </th>
+          <th nzCustomFilter nzWidth="100px" scope="col">
+            Servicio
+            <nz-filter-trigger [(nzVisible)]="visibleServicio" [nzActive]="searchServicio.length > 0" [nzDropdownMenu]="menuServicio">
+              <nz-icon nzType="search" />
+            </nz-filter-trigger>
+          </th>
+          <th nzWidth="100px" scope="col"
+              nzWidth="100px"
+              scope="col"
+              nzColumnKey="Fecha"
+              nzShowSort
+              [nzSortDirections]="['ascend', 'descend']"
+              [nzSortFn]="sortByFecha"
+              nzSortOrder="ascend">Fecha Planeada</th>
+          <th nzWidth="100px" scope="col">Fecha de Ejecucion</th>
+          <th nzWidth="100px" scope="col">Usuario</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (data of basicTable.data; track $index; let i = $index) {
+        <tr>
+          <td>
+            <app-modal
+            id="index"
+              [data]="data"
+              [isActive]="activeModal === i"
+              (close)="activeModal = null"
+            />
+          </td>
+          <td>
+            <a target="_blank" [href]="data.Cambio">{{ data.Rep }}</a>
+          </td>
+          <td>{{ data.Implementador }}</td>
+          <td>{{ data.SERVICIO }}</td>
+          <td>{{ data.Fecha | date:'medium'}}</td>
+          <td>{{ data.Fecha_Ejecucion | date:'medium'}}</td>
+          <td>{{ data.Usuario }}</td>
+        </tr>
+        }
+      </tbody>
+    </nz-table>
+    <nz-dropdown-menu #menuCambio="nzDropdownMenu">
+      <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+          <input type="text" nz-input placeholder="Buscar" [(ngModel)]="searchCambio" (keyup.enter)="search()"/>
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="resetFilter()">Reset</button>
+        </div>
+      </div>
+    </nz-dropdown-menu>
+
+    <nz-dropdown-menu #menuImplementador="nzDropdownMenu">
+      <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+          <input type="text" nz-input placeholder="Buscar" [(ngModel)]="searchImplementador" (keyup.enter)="search()"/>
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="resetFilter()">Reset</button>
+        </div>
+      </div>
+    </nz-dropdown-menu>
+
+    <nz-dropdown-menu #menuServicio="nzDropdownMenu">
+      <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+          <input type="text" nz-input placeholder="Buscar" [(ngModel)]="searchServicio" (keyup.enter)="search()"/>
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="resetFilter()">Reset</button>
+        </div>
+      </div>
+    </nz-dropdown-menu>
+  </div>
+</div>
