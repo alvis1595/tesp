@@ -388,7 +388,7 @@ export class ListadoDeCambiosComponent implements OnInit {
     });
   }
 
-  getFormattedDate = (): string { //quitamos el =>
+  getFormattedDate(): string { //quitamos el =>
     const options: Intl.DateTimeFormatOptions = {
       weekday: 'short',
       year: 'numeric',
