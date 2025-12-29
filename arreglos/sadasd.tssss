@@ -319,7 +319,7 @@ export class ListadoDeCambiosComponent implements OnInit {
         this.muestraLoading = false;
       },
       error: (e) => {
-        this.messageService.error(e.error.details)
+        this.messageService.error(e.error.details);
         
       },
     });
