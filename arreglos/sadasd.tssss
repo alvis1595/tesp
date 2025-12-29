@@ -191,57 +191,6 @@ export class ListadoDeCambiosComponent implements OnInit {
     this.elementSearch = new Date();
   }
 
-//  onChange() {
-//    const todayWithoutFormat: any = this.getFormattedDate();
-//    const credential: Credential = setGeneralCredential(todayWithoutFormat);
-//    const { password, usuario } = credential;
-//
-//    let index: number = 0;
-//    let body: any = {};
-//    this.muestraLoading = true;
-//    this.listaDeCRM = [];
-//    this.data = [];
-//
-//
-//
-//    if (this.modeSelect == 'REP') {
-//      const hoy = new Date();
-//      const dia = String(hoy.getDate()).padStart(2, '0');
-//      const mes = String(hoy.getMonth() + 1).padStart(2, '0');
-//      const año = hoy.getFullYear();
-//
-//      const fechaFormateada = `${dia}/${mes}/${año}`;
-//      const timeinicio = `${fechaFormateada} 00:00:00`;
-//      const tiempofinal = `${fechaFormateada} 23:59:59`;
-//
-//      this.listaDeCRM = [];
-//      this.data = [];
-//      body = {
-//        password,
-//        usuario,
-//        repValue: this.elementSearch,
-//        timeinicio,
-//        tiempofinal
-//      };
-//    }
-//
-//    if (this.modeSelect == 'Fecha') {
-//      const date = new Date(this.elementSearch);
-//
-//      const formattedDate = String(date.getDate()).padStart(2, '0') + '/' +
-//        String(date.getMonth() + 1).padStart(2, '0') + '/' +
-//        date.getFullYear();
-//
-//      this.listaDeCRM = [];
-//      this.data = [];
-//      body = {
-//        usuario,
-//        password,
-//        tiempofinal: `${formattedDate} 23:59:59`,
-//        timeinicio: `${formattedDate} 00:00:00`
-//      }
-//    }
-
   onChange() {
     const todayWithoutFormat: any = this.getFormattedDate();
     const credential: Credential = setGeneralCredential(todayWithoutFormat);
@@ -290,13 +239,7 @@ export class ListadoDeCambiosComponent implements OnInit {
         timeinicio: `${formattedDate} 00:00:00`
       }
     }
-//    this.getChangeServices.postCRQ(body).subscribe({
-//      next: (result) => {
-//        for (let i = 0; i < result.length; i++) {
-//          if (result[i].varJfrogVar == 'PENDING') {
-//            this.listaDeCRM.push(result[i]);
-//          }
-//        }
+//inicio alvis
     this.getChangeServices.get_arg_estados('pase').subscribe((estados) => {
       this.estadosArgos = estados;
 
