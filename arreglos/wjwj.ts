@@ -1,4 +1,3 @@
-
 + npm config fix
 
 The following configuration problems have been repaired:
@@ -11,7 +10,7 @@ The following configuration problems have been repaired:
 
 
 
-changed 268 packages in 21s
+changed 268 packages in 17s
 
 
 
@@ -29,7 +28,7 @@ npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supporte
 
 
 
-added 976 packages, and audited 977 packages in 25s
+added 976 packages, and audited 977 packages in 28s
 
 
 
@@ -63,7 +62,7 @@ Run `npm audit` for details.
 
 ��� Building...
 
-Application bundle generation failed. [10.299 seconds]
+Application bundle generation failed. [11.395 seconds]
 
 
 
@@ -243,7 +242,7 @@ Application bundle generation failed. [10.299 seconds]
 
     src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:391:2:
 
-      391 ���   getFormattedDate = (): string { //quitamos el =>
+      391 ���   getFormattedDate(): string { //quitamos el =>
 
           ���   ~~~~~~~~~~~~~~~~
 
@@ -257,7 +256,7 @@ Application bundle generation failed. [10.299 seconds]
 
     src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:391:2:
 
-      391 ���   getFormattedDate = (): string { //quitamos el =>
+      391 ���   getFormattedDate(): string { //quitamos el =>
 
           ���   ~~~~~~~~~~~~~~~~
 
@@ -265,15 +264,225 @@ Application bundle generation failed. [10.299 seconds]
 
 
 
-��� [ERROR] TS1005: '=>' expected. [plugin angular-compiler]
+��� [ERROR] TS1005: ',' expected. [plugin angular-compiler]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:391:32:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:391:20:
 
-      391 ���   getFormattedDate = (): string { //quitamos el =>
+      391 ���   getFormattedDate(): string { //quitamos el =>
 
-          ���                                 ^
+          ���                     ^
+
+
+
+
+
+��� [ERROR] TS2693: 'string' only refers to a type, but is being used as a value here. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:391:22:
+
+      391 ���   getFormattedDate(): string { //quitamos el =>
+
+          ���                       ~~~~~~
+
+
+
+
+
+��� [ERROR] TS1005: ',' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:391:29:
+
+      391 ���   getFormattedDate(): string { //quitamos el =>
+
+          ���                              ^
+
+
+
+
+
+��� [ERROR] TS2554: Expected 0-3 arguments, but got 4. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:391:29:
+
+      391 ���   getFormattedDate(): string { //quitamos el =>
+
+          ���                              ~~~~~~~~~~~~~~~~~~
+
+
+
+
+
+��� [ERROR] TS1005: ':' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:392:10:
+
+      392 ���     const options: Intl.DateTimeFormatOptions = {
+
+          ���           ~~~~~~~
+
+
+
+
+
+��� [ERROR] TS2304: Cannot find name 'options'. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:392:10:
+
+      392 ���     const options: Intl.DateTimeFormatOptions = {
+
+          ���           ~~~~~~~
+
+
+
+
+
+��� [ERROR] TS1005: ',' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:392:17:
+
+      392 ���     const options: Intl.DateTimeFormatOptions = {
+
+          ���                  ^
+
+
+
+
+
+��� [ERROR] TS1005: ',' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:392:23:
+
+      392 ���     const options: Intl.DateTimeFormatOptions = {
+
+          ���                        ^
+
+
+
+
+
+��� [ERROR] TS1005: ',' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:402:5:
+
+      402 ���     };
+
+          ���      ^
+
+
+
+
+
+��� [ERROR] TS1005: ':' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:404:10:
+
+      404 ���     const now = new Date().toLocaleString('en-US', options);
+
+          ���           ~~~
+
+
+
+
+
+��� [ERROR] TS2304: Cannot find name 'now'. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:404:10:
+
+      404 ���     const now = new Date().toLocaleString('en-US', options);
+
+          ���           ~~~
+
+
+
+
+
+��� [ERROR] TS2304: Cannot find name 'options'. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:404:51:
+
+      404 ���     const now = new Date().toLocaleString('en-US', options);
+
+          ���                                                    ~~~~~~~
+
+
+
+
+
+��� [ERROR] TS1005: ',' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:404:59:
+
+      404 ���     const now = new Date().toLocaleString('en-US', options);
+
+          ���                                                            ^
+
+
+
+
+
+��� [ERROR] TS1005: ':' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:405:11:
+
+      405 ���     return `${now} (hora est��ndar de Colombia)`;
+
+          ���            ~~~
+
+
+
+
+
+��� [ERROR] TS2304: Cannot find name 'now'. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:405:14:
+
+      405 ���     return `${now} (hora est��ndar de Colombia)`;
+
+          ���               ~~~
+
+
+
+
+
+��� [ERROR] TS1005: ',' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:405:47:
+
+      405 ���     return `${now} (hora est��ndar de Colombia)`;
+
+          ���                                               ^
 
 
 
@@ -889,15 +1098,15 @@ Application bundle generation failed. [10.299 seconds]
 
 
 
-��� [ERROR] Unexpected "."
+��� [ERROR] Expected identifier but found ":"
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:620:18:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:589:34:
 
-      620 ���             this: .isVisible = false,
+      589 ���             const: options, Intl, : .DateTimeFormatOptions = {
 
-          ���                   ^
+          ���                                   ^
 
 
 
