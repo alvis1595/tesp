@@ -403,7 +403,7 @@ export class ListadoDeCambiosComponent implements OnInit {
 
     const now = new Date().toLocaleString('en-US', options);
     return `${now} (hora estándar de Colombia)`;
-  };
+  }
 
   setIndexModal(index: any) {
     this.index = index;
