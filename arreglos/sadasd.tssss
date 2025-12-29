@@ -27,7 +27,6 @@ import { Credential } from '../../../../core/interfaces/credential.interface';
 })
 // MODIFICADO alvis: Implementar OnInit
 export class ListadoDeCambiosComponent implements OnInit {
-//export class ListadoDeCambiosComponent {
   data: any = [];
   muestraLoading: boolean = false;
   hasExpandColumn: boolean = true;
@@ -157,14 +156,8 @@ export class ListadoDeCambiosComponent implements OnInit {
     { title: 'Enlace Jfrog:', key: 'enlaceJfrog' },
   ];
 
-  constructor(
-    private getChangeServices: GetChangesService,
-    private messageService: NzMessageService
-  ) {}
-
  // Modificado alvis
   ngOnInit(): void {
-
   }
 
   validateButton(): void {
@@ -177,14 +170,15 @@ export class ListadoDeCambiosComponent implements OnInit {
     }
   }
 
+  constructor(
+    private getChangeServices: GetChangesService,
+    private messageService: NzMessageService
+  ) {}
+
   beforeUpload = (file: NzUploadFile): boolean => {
     this.fileList = this.fileList.concat(file);
     return false;
   };
-
-//  reset() {
-//    this.elementSearch = '';
-//  }
 
   //  MODIFICADO alvis
   reset() {
@@ -326,10 +320,11 @@ export class ListadoDeCambiosComponent implements OnInit {
       },
       error: (e) => {
         this.messageService.error(e.error.details)
-        //console.error('hubo un error');
+        
       },
     });
-  }
+  });
+}
 
   getFormattedDate(): string { //quitamos el =>
     const options: Intl.DateTimeFormatOptions = {
