@@ -10,7 +10,7 @@ The following configuration problems have been repaired:
 
 
 
-changed 268 packages in 17s
+changed 268 packages in 18s
 
 
 
@@ -28,7 +28,7 @@ npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supporte
 
 
 
-added 976 packages, and audited 977 packages in 28s
+added 976 packages, and audited 977 packages in 25s
 
 
 
@@ -62,7 +62,7 @@ Run `npm audit` for details.
 
 ��� Building...
 
-Application bundle generation failed. [11.395 seconds]
+Application bundle generation failed. [11.210 seconds]
 
 
 
@@ -306,7 +306,7 @@ Application bundle generation failed. [11.395 seconds]
 
 
 
-��� [ERROR] TS2554: Expected 0-3 arguments, but got 4. [plugin angular-compiler]
+��� [ERROR] TS2554: Expected 0-3 arguments, but got 14. [plugin angular-compiler]
 
 
 
@@ -334,7 +334,7 @@ Application bundle generation failed. [11.395 seconds]
 
 
 
-��� [ERROR] TS2304: Cannot find name 'options'. [plugin angular-compiler]
+��� [ERROR] TS2552: Cannot find name 'options'. Did you mean 'Option'? [plugin angular-compiler]
 
 
 
@@ -343,6 +343,18 @@ Application bundle generation failed. [11.395 seconds]
       392 ���     const options: Intl.DateTimeFormatOptions = {
 
           ���           ~~~~~~~
+
+
+
+  'Option' is declared here.
+
+
+
+    node_modules/typescript/lib/lib.dom.d.ts:27921:12:
+
+      27921 ��� declare var Option: {
+
+            ���             ~~~~~~
 
 
 
@@ -418,7 +430,7 @@ Application bundle generation failed. [11.395 seconds]
 
 
 
-��� [ERROR] TS2304: Cannot find name 'options'. [plugin angular-compiler]
+��� [ERROR] TS2552: Cannot find name 'options'. Did you mean 'Option'? [plugin angular-compiler]
 
 
 
@@ -427,6 +439,18 @@ Application bundle generation failed. [11.395 seconds]
       404 ���     const now = new Date().toLocaleString('en-US', options);
 
           ���                                                    ~~~~~~~
+
+
+
+  'Option' is declared here.
+
+
+
+    node_modules/typescript/lib/lib.dom.d.ts:27921:12:
+
+      27921 ��� declare var Option: {
+
+            ���             ~~~~~~
 
 
 
@@ -488,15 +512,15 @@ Application bundle generation failed. [11.395 seconds]
 
 
 
-��� [ERROR] TS1005: ')' expected. [plugin angular-compiler]
+��� [ERROR] TS1005: ',' expected. [plugin angular-compiler]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:406:3:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:408:2:
 
-      406 ���   };
+      408 ���   setIndexModal(index: any) {
 
-          ���    ^
+          ���   ~~~~~~~~~~~~~
 
 
 
@@ -544,7 +568,7 @@ Application bundle generation failed. [11.395 seconds]
 
 
 
-��� [ERROR] TS1005: ';' expected. [plugin angular-compiler]
+��� [ERROR] TS1005: ',' expected. [plugin angular-compiler]
 
 
 
@@ -558,15 +582,43 @@ Application bundle generation failed. [11.395 seconds]
 
 
 
-��� [ERROR] TS2339: Property 'getElements' does not exist on type 'ListadoDeCambiosComponent'. [plugin angular-compiler]
+��� [ERROR] TS1005: ':' expected. [plugin angular-compiler]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:410:9:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:409:8:
+
+      409 ���     this.index = index;
+
+          ���         ^
+
+
+
+
+
+��� [ERROR] TS1005: ',' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:409:22:
+
+      409 ���     this.index = index;
+
+          ���                       ^
+
+
+
+
+
+��� [ERROR] TS1005: ':' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:410:8:
 
       410 ���     this.getElements(index.children[0].Elementos);
 
-          ���          ~~~~~~~~~~~
+          ���         ^
 
 
 
@@ -581,6 +633,34 @@ Application bundle generation failed. [11.395 seconds]
       410 ���     this.getElements(index.children[0].Elementos);
 
           ���                            ~~~~~~~~
+
+
+
+
+
+��� [ERROR] TS1005: ',' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:410:49:
+
+      410 ���     this.getElements(index.children[0].Elementos);
+
+          ���                                                  ^
+
+
+
+
+
+��� [ERROR] TS1005: ',' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:413:2:
+
+      413 ���   getElements(elements: string) {
+
+          ���   ~~~~~~~~~~~
 
 
 
@@ -666,7 +746,7 @@ Application bundle generation failed. [11.395 seconds]
 
 
 
-��� [ERROR] TS1005: ';' expected. [plugin angular-compiler]
+��� [ERROR] TS1005: ',' expected. [plugin angular-compiler]
 
 
 
@@ -675,6 +755,34 @@ Application bundle generation failed. [11.395 seconds]
       413 ���   getElements(elements: string) {
 
           ���                                 ^
+
+
+
+
+
+��� [ERROR] TS1005: ':' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:414:10:
+
+      414 ���     const listas = setElementListJfrogCrq(elements);
+
+          ���           ~~~~~~
+
+
+
+
+
+��� [ERROR] TS2304: Cannot find name 'listas'. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:414:10:
+
+      414 ���     const listas = setElementListJfrogCrq(elements);
+
+          ���           ~~~~~~
 
 
 
@@ -701,6 +809,118 @@ Application bundle generation failed. [11.395 seconds]
       8334 ��� declare var Element: {
 
            ���             ~~~~~~~
+
+
+
+
+
+��� [ERROR] TS1005: ',' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:414:51:
+
+      414 ���     const listas = setElementListJfrogCrq(elements);
+
+          ���                                                    ^
+
+
+
+
+
+��� [ERROR] TS1005: ':' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:415:8:
+
+      415 ���     this.CRQElements = listas[0];
+
+          ���         ^
+
+
+
+
+
+��� [ERROR] TS2304: Cannot find name 'listas'. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:415:23:
+
+      415 ���     this.CRQElements = listas[0];
+
+          ���                        ~~~~~~
+
+
+
+
+
+��� [ERROR] TS1005: ',' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:415:32:
+
+      415 ���     this.CRQElements = listas[0];
+
+          ���                                 ^
+
+
+
+
+
+��� [ERROR] TS1005: ':' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:416:8:
+
+      416 ���     this.jfrogElements = listas[1];
+
+          ���         ^
+
+
+
+
+
+��� [ERROR] TS2304: Cannot find name 'listas'. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:416:25:
+
+      416 ���     this.jfrogElements = listas[1];
+
+          ���                          ~~~~~~
+
+
+
+
+
+��� [ERROR] TS1005: ',' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:416:34:
+
+      416 ���     this.jfrogElements = listas[1];
+
+          ���                                   ^
+
+
+
+
+
+��� [ERROR] TS1005: ',' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:419:2:
+
+      419 ���   getUrl(html: string) {
+
+          ���   ~~~~~~
 
 
 
@@ -762,7 +982,7 @@ Application bundle generation failed. [11.395 seconds]
 
 
 
-��� [ERROR] TS1005: ';' expected. [plugin angular-compiler]
+��� [ERROR] TS1005: ',' expected. [plugin angular-compiler]
 
 
 
@@ -771,6 +991,20 @@ Application bundle generation failed. [11.395 seconds]
       419 ���   getUrl(html: string) {
 
           ���                        ^
+
+
+
+
+
+��� [ERROR] TS1005: ':' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:420:11:
+
+      420 ���     return getUrlFromA(html);
+
+          ���            ~~~~~~~~~~~
 
 
 
@@ -790,6 +1024,34 @@ Application bundle generation failed. [11.395 seconds]
 
 
 
+��� [ERROR] TS1005: ',' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:420:28:
+
+      420 ���     return getUrlFromA(html);
+
+          ���                             ^
+
+
+
+
+
+��� [ERROR] TS1005: ',' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:423:2:
+
+      423 ���   handleCancel(): void {
+
+          ���   ~~~~~~~~~~~~
+
+
+
+
+
 ��� [ERROR] TS2304: Cannot find name 'handleCancel'. [plugin angular-compiler]
 
 
@@ -804,7 +1066,7 @@ Application bundle generation failed. [11.395 seconds]
 
 
 
-��� [ERROR] TS1005: ';' expected. [plugin angular-compiler]
+��� [ERROR] TS1005: ',' expected. [plugin angular-compiler]
 
 
 
@@ -874,6 +1136,20 @@ Application bundle generation failed. [11.395 seconds]
 
 
 
+��� [ERROR] TS1005: ',' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:428:2:
+
+      428 ���   showModal(type: string): void {
+
+          ���   ~~~~~~~~~
+
+
+
+
+
 ��� [ERROR] TS2304: Cannot find name 'showModal'. [plugin angular-compiler]
 
 
@@ -930,7 +1206,7 @@ Application bundle generation failed. [11.395 seconds]
 
 
 
-��� [ERROR] TS1005: ';' expected. [plugin angular-compiler]
+��� [ERROR] TS1005: ',' expected. [plugin angular-compiler]
 
 
 
@@ -1074,11 +1350,11 @@ Application bundle generation failed. [11.395 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:433:24:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:433:26:
 
       433 ���     if (type == 'upFile') {
 
-          ���                         ^
+          ���                           ^
 
 
 
