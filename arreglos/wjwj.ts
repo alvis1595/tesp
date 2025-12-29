@@ -1,183 +1,919 @@
-// ========================================
-// MÉTODO onChange() CON COMENTARIOS
-// ORIGINAL = código que ya existía
-// NUEVO = código agregado para el filtro
-// ========================================
++ npm config fix
 
-onChange() {
-  // ========== TODO ESTE BLOQUE ES ORIGINAL ==========
-  const todayWithoutFormat: any = this.getFormattedDate();
-  const credential: Credential = setGeneralCredential(todayWithoutFormat);
-  const { password, usuario } = credential;
-
-  let index: number = 0;
-  let body: any = {};
-  this.muestraLoading = true;
-  this.listaDeCRM = [];
-  this.data = [];
-  // ========== FIN BLOQUE ORIGINAL ==========
-
-  // ========== ESTE IF ES ORIGINAL ==========
-  if (this.modeSelect == 'REP') {
-    const hoy = new Date();
-    const dia = String(hoy.getDate()).padStart(2, '0');
-    const mes = String(hoy.getMonth() + 1).padStart(2, '0');
-    const año = hoy.getFullYear();
-
-    const fechaFormateada = `${dia}/${mes}/${año}`;
-    const timeinicio = `${fechaFormateada} 00:00:00`;
-    const tiempofinal = `${fechaFormateada} 23:59:59`;
-
-    this.listaDeCRM = [];
-    this.data = [];
-    body = {
-      password,
-      usuario,
-      repValue: this.elementSearch,
-      timeinicio,
-      tiempofinal
-    };
-  }
-  // ========== FIN IF ORIGINAL ==========
-
-  // ========== ESTE IF ES ORIGINAL ==========
-  if (this.modeSelect == 'Fecha') {
-    const date = new Date(this.elementSearch);
-
-    const formattedDate = String(date.getDate()).padStart(2, '0') + '/' +
-      String(date.getMonth() + 1).padStart(2, '0') + '/' +
-      date.getFullYear();
-
-    this.listaDeCRM = [];
-    this.data = [];
-    body = {
-      usuario,
-      password,
-      tiempofinal: `${formattedDate} 23:59:59`,
-      timeinicio: `${formattedDate} 00:00:00`
-    }
-  }
-  // ========== FIN IF ORIGINAL ==========
-
-  // ✅✅✅ NUEVO: Cargar estados válidos de Argos ANTES de filtrar ✅✅✅
-  this.getChangeServices.get_arg_estados('pase').subscribe((estados) => {
-    // ✅✅✅ NUEVO: Guardar estados en la variable ✅✅✅
-    this.estadosArgos = estados;
-
-    // ========== ESTA LÍNEA ES ORIGINAL (postCRQ) ==========
-    this.getChangeServices.postCRQ(body).subscribe({
-      next: (result) => {
-        // ========== ESTE FOR ES ORIGINAL ==========
-        for (let i = 0; i < result.length; i++) {
-          // ========== ESTE IF ES ORIGINAL ==========
-          if (result[i].varJfrogVar == 'PENDING') {
-            // ✅✅✅ NUEVO: Filtrar por estados válidos de Argos ✅✅✅
-            if (this.estadosArgos.includes(result[i].varEstado)) {
-              // ========== ESTA LÍNEA ES ORIGINAL ==========
-              this.listaDeCRM.push(result[i]);
-            } // ✅✅✅ FIN NUEVO ✅✅✅
-          }
-          // ========== FIN IF ORIGINAL ==========
-        }
-        // ========== FIN FOR ORIGINAL ==========
-
-        // ========== TODO ESTE BLOQUE forEach ES ORIGINAL ==========
-        this.listaDeCRM.forEach((element) => {
-          const indice = environment.listaEstados.indexOf(
-            element.varRequestType
-          );
-          element.varOrden = indice >= 0 ? indice : 100;
-
-          if (element.varInfra.length > 10) {
-            const toArrayinfra = element.varInfra.split('\n');
-
-            if (toArrayinfra.length > 3) {
-              const matchedLink = toArrayinfra.find((link) =>
-                link.includes(element.varCambio2 + '.')
-              );
-              element.varInfra = matchedLink || toArrayinfra[0];
-            } else {
-              element.varInfra = toArrayinfra[0];
-            }
-
-            const baseUrl = `${environment.urlJfrogApi}/api/storage/change-request/`;
-            const newUrl = `${environment.urlJfrogApi}/change-request/`;
-            element.varInfra = `<a href='${element.varInfra.replace(
-              baseUrl,
-              newUrl
-            )}' target='_blank'>${element.varCambio2}</a>`;
-          }
-
-          if (element.varFechaDeSalida.length >= 18) {
-            element.varFechaDeSalida = element.varFechaDeSalida.substring(
-              0,
-              10
-            );
-          }
-
-          if (element.varCambio2.includes('REP')) {
-            element.REP = element.varCambio2;
-            element.varCambio2 = `<a href="${environment.urlAtlasianApi}/browse/${element.varCambio2}" target="_blank">${element.varCambio2}</a>`;
-          }
-          if (element.varTipo == 'null') {
-            element.varTipo = 'Infraestructura';
-          }
-          this.listaDeCRM.sort(function (a, b) {
-            return a.varOrden - b.varOrden;
-          });
-          index++;
-        });
-        // ========== FIN forEach ORIGINAL ==========
-
-        // ========== TODO ESTE BLOQUE map ES ORIGINAL ==========
-        this.data = this.listaDeCRM.map((element, index) => ({
-          key: index,
-          REP: element.REP,
-          Cambio: element.varCambio2,
-          Fecha: element.varFechaDeSalida,
-          Prioridad: element.varPrioridad,
-          Tipo: element.varTipo,
-          Estado: element.varEstado,
-          Clase: element.varClase,
-          Implementador: element.varImplementador,
-          JFROG: element.varJfrogVar,
-          expand: false,
-          children: [
-            {
-              key: index,
-              JustificacionDelNegocio: element.varJustificacion,
-              Elementos: element.varListadoElementos,
-              enlaceJfrog: element.varInfra,
-            },
-          ],
-        }));
-        // ========== FIN map ORIGINAL ==========
-
-        // ========== ESTA LÍNEA ES ORIGINAL ==========
-        this.muestraLoading = false;
-      },
-      // ========== ESTE BLOQUE error ES ORIGINAL ==========
-      error: (error) => {
-        console.error('hubo un error');
-        this.muestraLoading = false;
-      },
-      // ========== FIN error ORIGINAL ==========
-    }); // ========== Cierre de postCRQ (ORIGINAL) ==========
-  // ✅✅✅ NUEVO: Cierre de get_arg_estados ✅✅✅
-  }); 
-} // ========== Cierre de onChange (ORIGINAL) ==========
+The following configuration problems have been repaired:
 
 
-// ========================================
-// RESUMEN DE CAMBIOS:
-// ========================================
-// LÍNEAS NUEVAS (solo 4):
-// 1. this.getChangeServices.get_arg_estados('pase').subscribe((estados) => {
-// 2. this.estadosArgos = estados;
-// 3. if (this.estadosArgos.includes(result[i].varEstado)) {
-// 4. }); (cierre de get_arg_estados)
-//
-// TOTAL: ~150 líneas de código
-// ORIGINAL: ~146 líneas
-// NUEVO: 4 líneas
-// ========================================
+
+~ `_auth` renamed to `//bgxpa.jfrog.io/artifactory/api/npm/norte-npm/:_auth` in user config
+
++ npm install -g @angular/cli
+
+
+
+changed 268 packages in 17s
+
+
+
+51 packages are looking for funding
+
+  run `npm fund` for details
+
++ npm install
+
+npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+
+npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+
+npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+
+
+
+added 976 packages, and audited 977 packages in 22s
+
+
+
+162 packages are looking for funding
+
+  run `npm fund` for details
+
+
+
+22 vulnerabilities (6 low, 6 moderate, 10 high)
+
+
+
+To address issues that do not require attention, run:
+
+  npm audit fix
+
+
+
+Some issues need review, and may require choosing
+
+a different dependency.
+
+
+
+Run `npm audit` for details.
+
++ ng build --configuration=development
+
+��� Building...
+
+��� Building...
+
+Application bundle generation failed. [9.593 seconds]
+
+
+
+��� [WARNING] NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. [plugin angular-compiler]
+
+
+
+    src/app/feature/DespliegueCd/pages/liberacion/modal/modal.component.html:30:19:
+
+      30 ���         <p>{{data?.children?.[0]?.JustificacionDelNegocio}}</p>
+
+         ���                    ~~~~~~~~
+
+
+
+  Error occurs in the template of component ModalComponent.
+
+
+
+    src/app/feature/DespliegueCd/pages/liberacion/modal/modal.component.ts:55:15:
+
+      55 ���   templateUrl: './modal.component.html',
+
+         ���                ~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+
+��� [ERROR] NG9: Property 'setIndexModal' does not exist on type 'ListadoDeCambiosComponent'. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.html:41:20:
+
+      41 ���       (indexModal)="setIndexModal($event)"
+
+         ���                     ~~~~~~~~~~~~~
+
+
+
+  Error occurs in the template of component ListadoDeCambiosComponent.
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:25:15:
+
+      25 ���   templateUrl: './listado-de-cambios.component.html',
+
+         ���                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+
+��� [ERROR] NG9: Property 'getUrl' does not exist on type 'ListadoDeCambiosComponent'. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.html:63:19:
+
+      63 ���         <a [href]="getUrl(index.children[0].enlaceJfrog)">
+
+         ���                    ~~~~~~
+
+
+
+  Error occurs in the template of component ListadoDeCambiosComponent.
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:25:15:
+
+      25 ���   templateUrl: './listado-de-cambios.component.html',
+
+         ���                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+
+��� [ERROR] NG9: Property 'showModal' does not exist on type 'ListadoDeCambiosComponent'. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.html:73:21:
+
+      73 ���             (click)="showModal('upFile')"
+
+         ���                      ~~~~~~~~~
+
+
+
+  Error occurs in the template of component ListadoDeCambiosComponent.
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:25:15:
+
+      25 ���   templateUrl: './listado-de-cambios.component.html',
+
+         ���                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+
+��� [ERROR] NG9: Property 'showModal' does not exist on type 'ListadoDeCambiosComponent'. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.html:82:21:
+
+      82 ���             (click)="showModal('listFiles')"
+
+         ���                      ~~~~~~~~~
+
+
+
+  Error occurs in the template of component ListadoDeCambiosComponent.
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:25:15:
+
+      25 ���   templateUrl: './listado-de-cambios.component.html',
+
+         ���                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+
+��� [ERROR] NG9: Property 'handleCancel' does not exist on type 'ListadoDeCambiosComponent'. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.html:98:16:
+
+      98 ���   (nzOnCancel)="handleCancel()"
+
+         ���                 ~~~~~~~~~~~~
+
+
+
+  Error occurs in the template of component ListadoDeCambiosComponent.
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:25:15:
+
+      25 ���   templateUrl: './listado-de-cambios.component.html',
+
+         ���                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+
+��� [ERROR] TS2420: Class 'ListadoDeCambiosComponent' incorrectly implements interface 'OnInit'.
+
+  Property 'ngOnInit' is missing in type 'ListadoDeCambiosComponent' but required in type 'OnInit'. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:29:13:
+
+      29 ��� export class ListadoDeCambiosComponent implements OnInit {
+
+         ���              ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+  'ngOnInit' is declared here.
+
+
+
+    node_modules/@angular/core/index.d.ts:6118:4:
+
+      6118 ���     ngOnInit(): void;
+
+           ���     ~~~~~~~~~~~~~~~~~
+
+
+
+
+
+��� [ERROR] TS2339: Property 'getFormattedDate' does not exist on type 'ListadoDeCambiosComponent'. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:242:41:
+
+      242 ���     const todayWithoutFormat: any = this.getFormattedDate();
+
+          ���                                          ~~~~~~~~~~~~~~~~
+
+
+
+
+
+��� [ERROR] TS1005: ',' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:387:2:
+
+      387 ���   getFormattedDate = (): string => {
+
+          ���   ~~~~~~~~~~~~~~~~
+
+
+
+
+
+��� [ERROR] TS2304: Cannot find name 'getFormattedDate'. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:387:2:
+
+      387 ���   getFormattedDate = (): string => {
+
+          ���   ~~~~~~~~~~~~~~~~
+
+
+
+
+
+��� [ERROR] TS1005: ')' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:402:3:
+
+      402 ���   };
+
+          ���    ^
+
+
+
+
+
+��� [ERROR] TS2304: Cannot find name 'setIndexModal'. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:404:2:
+
+      404 ���   setIndexModal(index: any) {
+
+          ���   ~~~~~~~~~~~~~
+
+
+
+
+
+��� [ERROR] TS1005: ',' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:404:21:
+
+      404 ���   setIndexModal(index: any) {
+
+          ���                      ^
+
+
+
+
+
+��� [ERROR] TS2693: 'any' only refers to a type, but is being used as a value here. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:404:23:
+
+      404 ���   setIndexModal(index: any) {
+
+          ���                        ~~~
+
+
+
+
+
+��� [ERROR] TS1005: ';' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:404:28:
+
+      404 ���   setIndexModal(index: any) {
+
+          ���                             ^
+
+
+
+
+
+��� [ERROR] TS2339: Property 'getElements' does not exist on type 'ListadoDeCambiosComponent'. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:406:9:
+
+      406 ���     this.getElements(index.children[0].Elementos);
+
+          ���          ~~~~~~~~~~~
+
+
+
+
+
+��� [ERROR] TS2339: Property 'children' does not exist on type 'number'. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:406:27:
+
+      406 ���     this.getElements(index.children[0].Elementos);
+
+          ���                            ~~~~~~~~
+
+
+
+
+
+��� [ERROR] TS2552: Cannot find name 'getElements'. Did you mean 'SVGSetElement'? [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:409:2:
+
+      409 ���   getElements(elements: string) {
+
+          ���   ~~~~~~~~~~~
+
+
+
+  'SVGSetElement' is declared here.
+
+
+
+    node_modules/typescript/lib/lib.dom.d.ts:21198:12:
+
+      21198 ��� declare var SVGSetElement: {
+
+            ���             ~~~~~~~~~~~~~
+
+
+
+
+
+��� [ERROR] TS2552: Cannot find name 'elements'. Did you mean 'Element'? [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:409:14:
+
+      409 ���   getElements(elements: string) {
+
+          ���               ~~~~~~~~
+
+
+
+  'Element' is declared here.
+
+
+
+    node_modules/typescript/lib/lib.dom.d.ts:8334:12:
+
+      8334 ��� declare var Element: {
+
+           ���             ~~~~~~~
+
+
+
+
+
+��� [ERROR] TS1005: ',' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:409:22:
+
+      409 ���   getElements(elements: string) {
+
+          ���                       ^
+
+
+
+
+
+��� [ERROR] TS2693: 'string' only refers to a type, but is being used as a value here. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:409:24:
+
+      409 ���   getElements(elements: string) {
+
+          ���                         ~~~~~~
+
+
+
+
+
+��� [ERROR] TS1005: ';' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:409:32:
+
+      409 ���   getElements(elements: string) {
+
+          ���                                 ^
+
+
+
+
+
+��� [ERROR] TS2552: Cannot find name 'elements'. Did you mean 'Element'? [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:410:42:
+
+      410 ���     const listas = setElementListJfrogCrq(elements);
+
+          ���                                           ~~~~~~~~
+
+
+
+  'Element' is declared here.
+
+
+
+    node_modules/typescript/lib/lib.dom.d.ts:8334:12:
+
+      8334 ��� declare var Element: {
+
+           ���             ~~~~~~~
+
+
+
+
+
+��� [ERROR] TS2304: Cannot find name 'getUrl'. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:415:2:
+
+      415 ���   getUrl(html: string) {
+
+          ���   ~~~~~~
+
+
+
+
+
+��� [ERROR] TS2304: Cannot find name 'html'. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:415:9:
+
+      415 ���   getUrl(html: string) {
+
+          ���          ~~~~
+
+
+
+
+
+��� [ERROR] TS1005: ',' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:415:13:
+
+      415 ���   getUrl(html: string) {
+
+          ���              ^
+
+
+
+
+
+��� [ERROR] TS2693: 'string' only refers to a type, but is being used as a value here. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:415:15:
+
+      415 ���   getUrl(html: string) {
+
+          ���                ~~~~~~
+
+
+
+
+
+��� [ERROR] TS1005: ';' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:415:23:
+
+      415 ���   getUrl(html: string) {
+
+          ���                        ^
+
+
+
+
+
+��� [ERROR] TS2304: Cannot find name 'html'. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:416:23:
+
+      416 ���     return getUrlFromA(html);
+
+          ���                        ~~~~
+
+
+
+
+
+��� [ERROR] TS2304: Cannot find name 'handleCancel'. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:419:2:
+
+      419 ���   handleCancel(): void {
+
+          ���   ~~~~~~~~~~~~
+
+
+
+
+
+��� [ERROR] TS1005: ';' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:419:16:
+
+      419 ���   handleCancel(): void {
+
+          ���                 ^
+
+
+
+
+
+��� [ERROR] TS1005: ':' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:420:8:
+
+      420 ���     this.isVisible = false;
+
+          ���         ^
+
+
+
+
+
+��� [ERROR] TS1005: ',' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:420:26:
+
+      420 ���     this.isVisible = false;
+
+          ���                           ^
+
+
+
+
+
+��� [ERROR] TS1005: ':' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:421:8:
+
+      421 ���     this.value = [];
+
+          ���         ^
+
+
+
+
+
+��� [ERROR] TS1005: ',' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:421:19:
+
+      421 ���     this.value = [];
+
+          ���                    ^
+
+
+
+
+
+��� [ERROR] TS2304: Cannot find name 'showModal'. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:424:2:
+
+      424 ���   showModal(type: string): void {
+
+          ���   ~~~~~~~~~
+
+
+
+
+
+��� [ERROR] TS2663: Cannot find name 'type'. Did you mean the instance member 'this.type'? [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:424:12:
+
+      424 ���   showModal(type: string): void {
+
+          ���             ~~~~
+
+
+
+
+
+��� [ERROR] TS1005: ',' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:424:16:
+
+      424 ���   showModal(type: string): void {
+
+          ���                 ^
+
+
+
+
+
+��� [ERROR] TS2693: 'string' only refers to a type, but is being used as a value here. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:424:18:
+
+      424 ���   showModal(type: string): void {
+
+          ���                   ~~~~~~
+
+
+
+
+
+��� [ERROR] TS1005: ';' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:424:25:
+
+      424 ���   showModal(type: string): void {
+
+          ���                          ^
+
+
+
+
+
+��� [ERROR] TS1005: ':' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:425:8:
+
+      425 ���     this.type = type;
+
+          ���         ^
+
+
+
+
+
+��� [ERROR] TS2663: Cannot find name 'type'. Did you mean the instance member 'this.type'? [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:425:16:
+
+      425 ���     this.type = type;
+
+          ���                 ~~~~
+
+
+
+
+
+��� [ERROR] TS1005: ',' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:425:20:
+
+      425 ���     this.type = type;
+
+          ���                     ^
+
+
+
+
+
+��� [ERROR] TS1005: ':' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:426:8:
+
+      426 ���     this.fileList = [];
+
+          ���         ^
+
+
+
+
+
+��� [ERROR] TS1005: ',' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:426:22:
+
+      426 ���     this.fileList = [];
+
+          ���                       ^
+
+
+
+
+
+��� [ERROR] TS1005: ':' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:427:8:
+
+      427 ���     this.errorMessage = null; // limpio error viejo de /upload
+
+          ���         ^
+
+
+
+
+
+��� [ERROR] TS1005: ',' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:427:28:
+
+      427 ���     this.errorMessage = null; // limpio error viejo de /upload
+
+          ���                             ^
+
+
+
+
+
+��� [ERROR] TS7006: Parameter 'type' implicitly has an 'any' type. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:429:8:
+
+      429 ���     if (type == 'upFile') {
+
+          ���         ~~~~
+
+
+
+
+
+��� [ERROR] TS1005: ',' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:429:13:
+
+      429 ���     if (type == 'upFile') {
+
+          ���              ~~
+
+
+
+
+
+��� [ERROR] TS1005: ';' expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:429:24:
+
+      429 ���     if (type == 'upFile') {
+
+          ���                         ^
+
+
+
+
+
+��� [ERROR] TS1128: Declaration or statement expected. [plugin angular-compiler]
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:431:6:
+
+      431 ���     } else {
+
+          ���       ~~~~
+
+
+
+
+
+��� [ERROR] Unexpected "."
+
+
+
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:617:18:
+
+      617 ���             this: .isVisible = false,
+
+          ���                   ^
+
+
+
+
+
+script returned exit code 1
