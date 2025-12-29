@@ -28,7 +28,7 @@ npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supporte
 
 
 
-added 976 packages, and audited 977 packages in 25s
+added 976 packages, and audited 977 packages in 29s
 
 
 
@@ -62,7 +62,7 @@ Run `npm audit` for details.
 
 ��� Building...
 
-Application bundle generation failed. [11.210 seconds]
+Application bundle generation failed. [12.797 seconds]
 
 
 
@@ -226,9 +226,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:246:41:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:195:41:
 
-      246 ���     const todayWithoutFormat: any = this.getFormattedDate();
+      195 ���     const todayWithoutFormat: any = this.getFormattedDate();
 
           ���                                          ~~~~~~~~~~~~~~~~
 
@@ -240,9 +240,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:391:2:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:334:2:
 
-      391 ���   getFormattedDate(): string { //quitamos el =>
+      334 ���   getFormattedDate(): string { //quitamos el =>
 
           ���   ~~~~~~~~~~~~~~~~
 
@@ -254,9 +254,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:391:2:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:334:2:
 
-      391 ���   getFormattedDate(): string { //quitamos el =>
+      334 ���   getFormattedDate(): string { //quitamos el =>
 
           ���   ~~~~~~~~~~~~~~~~
 
@@ -268,9 +268,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:391:20:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:334:20:
 
-      391 ���   getFormattedDate(): string { //quitamos el =>
+      334 ���   getFormattedDate(): string { //quitamos el =>
 
           ���                     ^
 
@@ -282,9 +282,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:391:22:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:334:22:
 
-      391 ���   getFormattedDate(): string { //quitamos el =>
+      334 ���   getFormattedDate(): string { //quitamos el =>
 
           ���                       ~~~~~~
 
@@ -296,9 +296,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:391:29:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:334:29:
 
-      391 ���   getFormattedDate(): string { //quitamos el =>
+      334 ���   getFormattedDate(): string { //quitamos el =>
 
           ���                              ^
 
@@ -310,9 +310,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:391:29:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:334:29:
 
-      391 ���   getFormattedDate(): string { //quitamos el =>
+      334 ���   getFormattedDate(): string { //quitamos el =>
 
           ���                              ~~~~~~~~~~~~~~~~~~
 
@@ -324,9 +324,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:392:10:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:335:10:
 
-      392 ���     const options: Intl.DateTimeFormatOptions = {
+      335 ���     const options: Intl.DateTimeFormatOptions = {
 
           ���           ~~~~~~~
 
@@ -338,9 +338,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:392:10:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:335:10:
 
-      392 ���     const options: Intl.DateTimeFormatOptions = {
+      335 ���     const options: Intl.DateTimeFormatOptions = {
 
           ���           ~~~~~~~
 
@@ -364,9 +364,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:392:17:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:335:17:
 
-      392 ���     const options: Intl.DateTimeFormatOptions = {
+      335 ���     const options: Intl.DateTimeFormatOptions = {
 
           ���                  ^
 
@@ -378,9 +378,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:392:23:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:335:23:
 
-      392 ���     const options: Intl.DateTimeFormatOptions = {
+      335 ���     const options: Intl.DateTimeFormatOptions = {
 
           ���                        ^
 
@@ -392,9 +392,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:402:5:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:345:5:
 
-      402 ���     };
+      345 ���     };
 
           ���      ^
 
@@ -406,9 +406,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:404:10:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:347:10:
 
-      404 ���     const now = new Date().toLocaleString('en-US', options);
+      347 ���     const now = new Date().toLocaleString('en-US', options);
 
           ���           ~~~
 
@@ -420,9 +420,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:404:10:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:347:10:
 
-      404 ���     const now = new Date().toLocaleString('en-US', options);
+      347 ���     const now = new Date().toLocaleString('en-US', options);
 
           ���           ~~~
 
@@ -434,9 +434,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:404:51:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:347:51:
 
-      404 ���     const now = new Date().toLocaleString('en-US', options);
+      347 ���     const now = new Date().toLocaleString('en-US', options);
 
           ���                                                    ~~~~~~~
 
@@ -460,9 +460,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:404:59:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:347:59:
 
-      404 ���     const now = new Date().toLocaleString('en-US', options);
+      347 ���     const now = new Date().toLocaleString('en-US', options);
 
           ���                                                            ^
 
@@ -474,9 +474,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:405:11:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:348:11:
 
-      405 ���     return `${now} (hora est��ndar de Colombia)`;
+      348 ���     return `${now} (hora est��ndar de Colombia)`;
 
           ���            ~~~
 
@@ -488,9 +488,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:405:14:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:348:14:
 
-      405 ���     return `${now} (hora est��ndar de Colombia)`;
+      348 ���     return `${now} (hora est��ndar de Colombia)`;
 
           ���               ~~~
 
@@ -502,9 +502,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:405:47:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:348:47:
 
-      405 ���     return `${now} (hora est��ndar de Colombia)`;
+      348 ���     return `${now} (hora est��ndar de Colombia)`;
 
           ���                                               ^
 
@@ -516,9 +516,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:408:2:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:351:2:
 
-      408 ���   setIndexModal(index: any) {
+      351 ���   setIndexModal(index: any) {
 
           ���   ~~~~~~~~~~~~~
 
@@ -530,9 +530,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:408:2:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:351:2:
 
-      408 ���   setIndexModal(index: any) {
+      351 ���   setIndexModal(index: any) {
 
           ���   ~~~~~~~~~~~~~
 
@@ -544,9 +544,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:408:21:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:351:21:
 
-      408 ���   setIndexModal(index: any) {
+      351 ���   setIndexModal(index: any) {
 
           ���                      ^
 
@@ -558,9 +558,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:408:23:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:351:23:
 
-      408 ���   setIndexModal(index: any) {
+      351 ���   setIndexModal(index: any) {
 
           ���                        ~~~
 
@@ -572,9 +572,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:408:28:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:351:28:
 
-      408 ���   setIndexModal(index: any) {
+      351 ���   setIndexModal(index: any) {
 
           ���                             ^
 
@@ -586,9 +586,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:409:8:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:352:8:
 
-      409 ���     this.index = index;
+      352 ���     this.index = index;
 
           ���         ^
 
@@ -600,9 +600,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:409:22:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:352:22:
 
-      409 ���     this.index = index;
+      352 ���     this.index = index;
 
           ���                       ^
 
@@ -614,9 +614,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:410:8:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:353:8:
 
-      410 ���     this.getElements(index.children[0].Elementos);
+      353 ���     this.getElements(index.children[0].Elementos);
 
           ���         ^
 
@@ -628,9 +628,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:410:27:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:353:27:
 
-      410 ���     this.getElements(index.children[0].Elementos);
+      353 ���     this.getElements(index.children[0].Elementos);
 
           ���                            ~~~~~~~~
 
@@ -642,9 +642,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:410:49:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:353:49:
 
-      410 ���     this.getElements(index.children[0].Elementos);
+      353 ���     this.getElements(index.children[0].Elementos);
 
           ���                                                  ^
 
@@ -656,9 +656,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:413:2:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:356:2:
 
-      413 ���   getElements(elements: string) {
+      356 ���   getElements(elements: string) {
 
           ���   ~~~~~~~~~~~
 
@@ -670,9 +670,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:413:2:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:356:2:
 
-      413 ���   getElements(elements: string) {
+      356 ���   getElements(elements: string) {
 
           ���   ~~~~~~~~~~~
 
@@ -696,9 +696,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:413:14:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:356:14:
 
-      413 ���   getElements(elements: string) {
+      356 ���   getElements(elements: string) {
 
           ���               ~~~~~~~~
 
@@ -722,9 +722,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:413:22:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:356:22:
 
-      413 ���   getElements(elements: string) {
+      356 ���   getElements(elements: string) {
 
           ���                       ^
 
@@ -736,9 +736,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:413:24:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:356:24:
 
-      413 ���   getElements(elements: string) {
+      356 ���   getElements(elements: string) {
 
           ���                         ~~~~~~
 
@@ -750,9 +750,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:413:32:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:356:32:
 
-      413 ���   getElements(elements: string) {
+      356 ���   getElements(elements: string) {
 
           ���                                 ^
 
@@ -764,9 +764,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:414:10:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:357:10:
 
-      414 ���     const listas = setElementListJfrogCrq(elements);
+      357 ���     const listas = setElementListJfrogCrq(elements);
 
           ���           ~~~~~~
 
@@ -778,9 +778,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:414:10:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:357:10:
 
-      414 ���     const listas = setElementListJfrogCrq(elements);
+      357 ���     const listas = setElementListJfrogCrq(elements);
 
           ���           ~~~~~~
 
@@ -792,9 +792,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:414:42:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:357:42:
 
-      414 ���     const listas = setElementListJfrogCrq(elements);
+      357 ���     const listas = setElementListJfrogCrq(elements);
 
           ���                                           ~~~~~~~~
 
@@ -818,9 +818,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:414:51:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:357:51:
 
-      414 ���     const listas = setElementListJfrogCrq(elements);
+      357 ���     const listas = setElementListJfrogCrq(elements);
 
           ���                                                    ^
 
@@ -832,9 +832,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:415:8:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:358:8:
 
-      415 ���     this.CRQElements = listas[0];
+      358 ���     this.CRQElements = listas[0];
 
           ���         ^
 
@@ -846,9 +846,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:415:23:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:358:23:
 
-      415 ���     this.CRQElements = listas[0];
+      358 ���     this.CRQElements = listas[0];
 
           ���                        ~~~~~~
 
@@ -860,9 +860,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:415:32:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:358:32:
 
-      415 ���     this.CRQElements = listas[0];
+      358 ���     this.CRQElements = listas[0];
 
           ���                                 ^
 
@@ -874,9 +874,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:416:8:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:359:8:
 
-      416 ���     this.jfrogElements = listas[1];
+      359 ���     this.jfrogElements = listas[1];
 
           ���         ^
 
@@ -888,9 +888,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:416:25:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:359:25:
 
-      416 ���     this.jfrogElements = listas[1];
+      359 ���     this.jfrogElements = listas[1];
 
           ���                          ~~~~~~
 
@@ -902,9 +902,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:416:34:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:359:34:
 
-      416 ���     this.jfrogElements = listas[1];
+      359 ���     this.jfrogElements = listas[1];
 
           ���                                   ^
 
@@ -916,9 +916,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:419:2:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:362:2:
 
-      419 ���   getUrl(html: string) {
+      362 ���   getUrl(html: string) {
 
           ���   ~~~~~~
 
@@ -930,9 +930,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:419:2:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:362:2:
 
-      419 ���   getUrl(html: string) {
+      362 ���   getUrl(html: string) {
 
           ���   ~~~~~~
 
@@ -944,9 +944,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:419:9:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:362:9:
 
-      419 ���   getUrl(html: string) {
+      362 ���   getUrl(html: string) {
 
           ���          ~~~~
 
@@ -958,9 +958,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:419:13:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:362:13:
 
-      419 ���   getUrl(html: string) {
+      362 ���   getUrl(html: string) {
 
           ���              ^
 
@@ -972,9 +972,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:419:15:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:362:15:
 
-      419 ���   getUrl(html: string) {
+      362 ���   getUrl(html: string) {
 
           ���                ~~~~~~
 
@@ -986,9 +986,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:419:23:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:362:23:
 
-      419 ���   getUrl(html: string) {
+      362 ���   getUrl(html: string) {
 
           ���                        ^
 
@@ -1000,9 +1000,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:420:11:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:363:11:
 
-      420 ���     return getUrlFromA(html);
+      363 ���     return getUrlFromA(html);
 
           ���            ~~~~~~~~~~~
 
@@ -1014,9 +1014,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:420:23:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:363:23:
 
-      420 ���     return getUrlFromA(html);
+      363 ���     return getUrlFromA(html);
 
           ���                        ~~~~
 
@@ -1028,9 +1028,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:420:28:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:363:28:
 
-      420 ���     return getUrlFromA(html);
+      363 ���     return getUrlFromA(html);
 
           ���                             ^
 
@@ -1042,9 +1042,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:423:2:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:366:2:
 
-      423 ���   handleCancel(): void {
+      366 ���   handleCancel(): void {
 
           ���   ~~~~~~~~~~~~
 
@@ -1056,9 +1056,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:423:2:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:366:2:
 
-      423 ���   handleCancel(): void {
+      366 ���   handleCancel(): void {
 
           ���   ~~~~~~~~~~~~
 
@@ -1070,9 +1070,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:423:16:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:366:16:
 
-      423 ���   handleCancel(): void {
+      366 ���   handleCancel(): void {
 
           ���                 ^
 
@@ -1084,9 +1084,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:424:8:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:367:8:
 
-      424 ���     this.isVisible = false;
+      367 ���     this.isVisible = false;
 
           ���         ^
 
@@ -1098,9 +1098,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:424:26:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:367:26:
 
-      424 ���     this.isVisible = false;
+      367 ���     this.isVisible = false;
 
           ���                           ^
 
@@ -1112,9 +1112,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:425:8:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:368:8:
 
-      425 ���     this.value = [];
+      368 ���     this.value = [];
 
           ���         ^
 
@@ -1126,9 +1126,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:425:19:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:368:19:
 
-      425 ���     this.value = [];
+      368 ���     this.value = [];
 
           ���                    ^
 
@@ -1140,9 +1140,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:428:2:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:371:2:
 
-      428 ���   showModal(type: string): void {
+      371 ���   showModal(type: string): void {
 
           ���   ~~~~~~~~~
 
@@ -1154,9 +1154,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:428:2:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:371:2:
 
-      428 ���   showModal(type: string): void {
+      371 ���   showModal(type: string): void {
 
           ���   ~~~~~~~~~
 
@@ -1168,9 +1168,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:428:12:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:371:12:
 
-      428 ���   showModal(type: string): void {
+      371 ���   showModal(type: string): void {
 
           ���             ~~~~
 
@@ -1182,9 +1182,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:428:16:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:371:16:
 
-      428 ���   showModal(type: string): void {
+      371 ���   showModal(type: string): void {
 
           ���                 ^
 
@@ -1196,9 +1196,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:428:18:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:371:18:
 
-      428 ���   showModal(type: string): void {
+      371 ���   showModal(type: string): void {
 
           ���                   ~~~~~~
 
@@ -1210,9 +1210,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:428:25:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:371:25:
 
-      428 ���   showModal(type: string): void {
+      371 ���   showModal(type: string): void {
 
           ���                          ^
 
@@ -1224,9 +1224,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:429:8:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:372:8:
 
-      429 ���     this.type = type;
+      372 ���     this.type = type;
 
           ���         ^
 
@@ -1238,9 +1238,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:429:16:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:372:16:
 
-      429 ���     this.type = type;
+      372 ���     this.type = type;
 
           ���                 ~~~~
 
@@ -1252,9 +1252,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:429:20:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:372:20:
 
-      429 ���     this.type = type;
+      372 ���     this.type = type;
 
           ���                     ^
 
@@ -1266,9 +1266,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:430:8:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:373:8:
 
-      430 ���     this.fileList = [];
+      373 ���     this.fileList = [];
 
           ���         ^
 
@@ -1280,9 +1280,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:430:22:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:373:22:
 
-      430 ���     this.fileList = [];
+      373 ���     this.fileList = [];
 
           ���                       ^
 
@@ -1294,9 +1294,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:431:8:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:374:8:
 
-      431 ���     this.errorMessage = null; // limpio error viejo de /upload
+      374 ���     this.errorMessage = null; // limpio error viejo de /upload
 
           ���         ^
 
@@ -1308,9 +1308,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:431:28:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:374:28:
 
-      431 ���     this.errorMessage = null; // limpio error viejo de /upload
+      374 ���     this.errorMessage = null; // limpio error viejo de /upload
 
           ���                             ^
 
@@ -1322,9 +1322,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:433:8:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:376:8:
 
-      433 ���     if (type == 'upFile') {
+      376 ���     if (type == 'upFile') {
 
           ���         ~~~~
 
@@ -1336,9 +1336,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:433:13:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:376:13:
 
-      433 ���     if (type == 'upFile') {
+      376 ���     if (type == 'upFile') {
 
           ���              ~~
 
@@ -1350,9 +1350,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:433:26:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:376:26:
 
-      433 ���     if (type == 'upFile') {
+      376 ���     if (type == 'upFile') {
 
           ���                           ^
 
@@ -1364,9 +1364,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:435:6:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:378:6:
 
-      435 ���     } else {
+      378 ���     } else {
 
           ���       ~~~~
 
@@ -1378,9 +1378,9 @@ Application bundle generation failed. [11.210 seconds]
 
 
 
-    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:589:34:
+    src/app/feature/paseExpress/pages/listado-de-cambios/listado-de-cambios.component.ts:533:34:
 
-      589 ���             const: options, Intl, : .DateTimeFormatOptions = {
+      533 ���             const: options, Intl, : .DateTimeFormatOptions = {
 
           ���                                   ^
 
